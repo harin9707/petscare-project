@@ -3,8 +3,6 @@ package com.test.controller;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.test.constants.Constant;
+import com.test.constants.Constant.ESession;
 import com.test.dao.CompanyDAO;
 import com.test.dao.CustomerDAO;
 import com.test.dao.PetDAO;
@@ -23,75 +23,65 @@ import com.test.dto.CustomerDTO;
 import com.test.dto.PetDTO;
 
 @Controller
-@SessionAttributes({"customer", "company"})
+@SessionAttributes({ "customer", "company" })
 public class MemberController {
-	
+
 	@Autowired
 	private CustomerDAO customerDao;
-	
+
 	@Autowired
 	private CompanyDAO companyDao;
-	
+
 	@Autowired
 	private PetDAO petDao;
-	
+
 	@RequestMapping("/login")
 	public String login(Model model) {
 		System.out.println("~~~login~~~");
-		return "login"; // login.jsp // views ?��?�� ?��
+		return "login"; // login.jsp // views ?占쏙옙?占쏙옙 ?占쏙옙
 	}
-	
+
 	@RequestMapping("/loginDo")
-	public String loginDo(Model model, String id, String pw, HttpSession session) {
-		System.out.println("11111111111111");
+	public String loginDo(Model model, String id, String pw, HttpSession session, SessionStatus status) {
 		CustomerDTO customer = this.customerDao.listThisCustomer(id, pw);
+		CompanyDTO company = this.companyDao.listThisCompany(id, pw);
 		String url = "";
-		System.out.println("11111111111111");
-		if(customer != null) {
-			System.out.println("222222222222222");
+		
+		if (customer != null && company == null) { // only customer
 			url = "customerprofile";
 			model.addAttribute("customer", customer);
-			System.out.println(customer.getId());
-			System.out.println(customer.getPwd());
-			System.out.println("222222222222222");
-		}else { // customer == null
-			System.out.println("3333333333333333333");
-			CompanyDTO company = this.companyDao.listThisCompany(id, pw);
-			System.out.println("3333333333333333333");
-			if(company != null) {
-				System.out.println("444444444444");
-				System.out.println(company.getId());
-				System.out.println(company.getPwd());
-				model.addAttribute("company", company);
-				url = "companyprofile";
-				System.out.println("444444444444");
-			}else { // company == null
-				System.out.println("5555555555555");
-				url = "login";
-			}
+			Constant.eSession = ESession.eCustomer;
+		}else if (customer == null && company != null){ // only company
+			model.addAttribute("company", company);
+			url = "companyprofile";
+			Constant.eSession = ESession.eCompany;
+		}else if (customer != null && company != null) { // company == null
+			System.out.println("고객 & 업체 중복 로그인 방지");
+			status.setComplete();
+			url = "/";
+		}else { // customer == null && company == null
+			url = "login";
 		}
-		// ======> customer가 로그인하는 건지, company가 로그인하는 건지
 		
 		return "redirect:" + url; // loginDo.jsp
-		// profile.jsp OR signup.jsp // views
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(Model model, SessionStatus status) {
 		status.setComplete();
 		System.out.println("~~~logout~~~");
-		
+
 		return "redirect:/"; // index.jsp // views
 	}
-	
+
 	@RequestMapping("/customerprofile")
 	public String profile(Model model, HttpSession session) {
-		if(session.getAttribute("customer") != null) {
+		if (session.getAttribute("customer") != null) {
 			try {
 				CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
-				System.out.println("customer => " + customer.getId());
-				List<PetDTO> itspets = this.petDao.listItsPets(customer.getCid());
-				model.addAttribute("pets", itspets);
+				System.out.println("customer => " + customer.getCustomer_Index());
+				List<PetDTO> itspets = this.petDao.listItsPets(customer.getCustomer_Index());
+				model.addAttribute("pet", itspets);
 			} catch (SecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -99,53 +89,44 @@ public class MemberController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else {
+		} else {
 			// false
 			// Exception Handling
 		}
-		
+
 		return "customerprofile"; // customerprofile.jsp // views
 	}
-	
+
 	@RequestMapping("/signup")
 	public String signup(Model model) {
 		// insertTheCustomer
 		return "signup"; // signup.jsp // views
 	}
-	
+
 	@RequestMapping("/signupDo")
 	public String signupDo(@RequestParam HashMap<String, Object> cmap) {
-		
-		String flag = (String) cmap.get("flag"); // 고객인가 기업인가
-		System.out.println(flag + "~~~~~~~~~");
+		String flag = (String) cmap.get("flag"); // 怨좉컼�씤媛� 湲곗뾽�씤媛�
 		String url = "";
-		System.out.println("~~~~~~~~~~~~~~~~");
-		System.out.println(cmap.get("id"));
-		System.out.println(cmap.get("pw"));
-		System.out.println("~~~~~~~~~~~~~~~~");
-		if(flag.equals("user")) {
-			System.out.println("user signup");
+		if (flag.equals("user")) {
 			this.userSignup(cmap);
-		}else if(flag.equals("corp")) {
-			System.out.println("corp signup");
+		} else if (flag.equals("corp")) {
 			this.corpSignup(cmap);
-		}else {
+		} else {
 			System.out.println("NoBody");
 		}
-		
 		return "redirect:/";
 	}
-	
+
 	public int userSignup(HashMap<String, Object> cmap) {
 		int res = this.customerDao.insertTheCustomer(cmap);
 		System.out.println("customer insert result => " + res);
 		return res;
 	}
-	
+
 	public int corpSignup(HashMap<String, Object> cmap) {
 		int res = this.companyDao.insertTheCompany(cmap);
 		System.out.println("company insert result => " + res);
 		return res;
 	}
-	
+
 }

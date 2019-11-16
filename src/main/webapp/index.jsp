@@ -38,7 +38,7 @@
                     <a class="nav-link" href="#">소개</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">예약하기</a>
+                    <a class="nav-link" href="reserve">예약하기</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">플레이스</a>

@@ -12,17 +12,17 @@ import com.test.dto.CompanyDTO;
 
 @Repository
 public class CompanyDAOimpl implements CompanyDAO {
-	// @Repository // DAO 클래스에 필수적인 어노테이션, 그래야 인식 가능!
+	// @Repository // DAO �겢�옒�뒪�뿉 �븘�닔�쟻�씤 �뼱�끂�뀒�씠�뀡, 洹몃옒�빞 �씤�떇 媛��뒫!
 	
-	@Autowired // root-context.xml 참고
+	@Autowired // root-context.xml 李멸퀬
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public CompanyDTO listThisCompany(String id, String pw) {
+	public CompanyDTO listThisCompany(String company_Id, String company_Password) {
 		// TODO Auto-generated method stub
 		Map<String, String> company = new HashMap<String, String>();
-		company.put("id", id);
-		company.put("pw", pw);
+		company.put("company_Id", company_Id);
+		company.put("company_Password", company_Password);
 		return this.sqlSession.selectOne("listThisCompany", company);
 	}
 	
@@ -30,18 +30,18 @@ public class CompanyDAOimpl implements CompanyDAO {
 	public int insertTheCompany(HashMap<String, Object> cmap) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("!!!!" + cmap.get("id"));
-		System.out.println("!!!!" + cmap.get("pw"));
+		System.out.println("!!!!" + cmap.get("Company_Id"));
+		System.out.println("!!!!" + cmap.get("Company_Password"));
 		
 		return this.sqlSession.insert("insertTheCompany", cmap);
 	}
 	
 	@Override
-	public int deleteTheCompany(int companyIdx) {
+	public int deleteTheCompany(int company_Index) {
 		// TODO Auto-generated method stub
-		System.out.println("!!!!" + companyIdx);
+		System.out.println("!!!!" + company_Index);
 		
-		return this.sqlSession.delete("deleteTheCompany", companyIdx);
+		return this.sqlSession.delete("deleteTheCompany", company_Index);
 	}
 	
 }

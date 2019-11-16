@@ -3,99 +3,96 @@ package com.test.dto;
 public class CompanyDTO {
 
 	/*
-id varchar(12) not null, 
-pwd varchar(12) not null, 
-name varchar(10) not null, 
-business_number int(4) not null, 
-phone_number varchar(13) not null, 
-city varchar(20) not null,
-gu varchar(20) not null,
-dong varchar(20) not null,
-email varchar(32) not null,
-business_type varchar(20) not null, 
-profile text, 
-primary key(id), 
-unique key(pwd), 
-unique key(business_number)
+Company_Index int not null auto_increment,
+Company_Id varchar(12) not null, 
+Company_Password varchar(12) not null, 
+Company_UserName varchar(10) not null, 
+Company_Address varchar(50) not null,
+Company_Email varchar(80) not null,
+Company_PhoneNumber varchar(13) not null, 
+Company_Name varchar(20) not null, 
+Company_Number int(15) not null, 
+Company_Type varchar(20)not null, 
+Company_Image mediumblob ,
+primary key(Company_Index),
+unique key(Company_Password)
 	 */
 	
-	private String id;
-	private String pwd;
-	private String name;
-	private int business_number;
-	private String phone_number;
-	private String city;
-	private String gu;
-	private String dong;
-	private String email;
-	private String business_type;
-	private String profile;
-	
-	public String getId() {
-		return id;
+	private int company_Index ;
+	private String company_Id;
+	private String company_Password ;
+	private String company_UserName ;
+	private String company_Address ;
+	private String company_Email ;
+	private String company_UserPhoneNumber ;
+	private String company_Name;
+	private int company_Number;
+	private String company_Type;
+	private Byte[] company_Image;
+	public int getCompany_Index() {
+		return company_Index;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setCompany_Index(int company_Index) {
+		this.company_Index = company_Index;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getCompany_Id() {
+		return company_Id;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setCompany_Id(String company_Id) {
+		this.company_Id = company_Id;
 	}
-	public String getName() {
-		return name;
+	public String getCompany_Password() {
+		return company_Password;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCompany_Password(String company_Password) {
+		this.company_Password = company_Password;
 	}
-	public int getBusiness_number() {
-		return business_number;
+	public String getCompany_UserName() {
+		return company_UserName;
 	}
-	public void setBusiness_number(int business_number) {
-		this.business_number = business_number;
+	public void setCompany_UserName(String company_UserName) {
+		this.company_UserName = company_UserName;
 	}
-	public String getPhone_number() {
-		return phone_number;
+	public String getCompany_Address() {
+		return company_Address;
 	}
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setCompany_Address(String company_Address) {
+		this.company_Address = company_Address;
 	}
-	public String getCity() {
-		return city;
+	public String getCompany_Email() {
+		return company_Email;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setCompany_Email(String company_Email) {
+		this.company_Email = company_Email;
 	}
-	public String getGu() {
-		return gu;
+	public String getCompany_UserPhoneNumber() {
+		return company_UserPhoneNumber;
 	}
-	public void setGu(String gu) {
-		this.gu = gu;
+	public void setCompany_UserPhoneNumber(String company_UserPhoneNumber) {
+		this.company_UserPhoneNumber = company_UserPhoneNumber;
 	}
-	public String getDong() {
-		return dong;
+	public String getCompany_Name() {
+		return company_Name;
 	}
-	public void setDong(String dong) {
-		this.dong = dong;
+	public void setCompany_Name(String company_Name) {
+		this.company_Name = company_Name;
 	}
-	public String getEmail() {
-		return email;
+	public int getCompany_Number() {
+		return company_Number;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCompany_Number(int company_Number) {
+		this.company_Number = company_Number;
 	}
-	public String getBusiness_type() {
-		return business_type;
+	public String getCompany_Type() {
+		return company_Type;
 	}
-	public void setBusiness_type(String business_type) {
-		this.business_type = business_type;
+	public void setCompany_Type(String company_Type) {
+		this.company_Type = company_Type;
 	}
-	public String getProfile() {
-		return profile;
+	public Byte[] getCompany_Image() {
+		return company_Image;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setCompany_Image(Byte[] company_Image) {
+		this.company_Image = company_Image;
 	}
-	
 }

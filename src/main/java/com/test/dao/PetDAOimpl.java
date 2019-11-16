@@ -16,22 +16,24 @@ public class PetDAOimpl implements PetDAO {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<PetDTO> listItsPets(int customerIdx) {
+	public List<PetDTO> listItsPets(int customer_Index) {
 		// TODO Auto-generated method stub
-		return this.sqlSession.selectList("listItsPets", customerIdx);
+		return this.sqlSession.selectList("listItsPets", customer_Index);
 	}
 	
 	@Override
 	public int insertThePet(HashMap<String, Object> pmap) {
 		// TODO Auto-generated method stub
+//		int customer_Index = this.sqlSession.selectOne("listPetIndex", pmap);
+//		pmap.put("customer_Index", customer_Index);
 		return this.sqlSession.insert("insertThePet", pmap);
 	}
 
 	@Override
-	public int deleteThePet(int petIdx) {
+	public int deleteThePet(int pet_Index) {
 		// TODO Auto-generated method stub
 		
-		return this.sqlSession.delete("deleteThePet", petIdx);
+		return this.sqlSession.delete("deleteThePet", pet_Index);
 	}
 	
 }

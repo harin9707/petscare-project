@@ -6,10 +6,10 @@ import com.test.dto.CustomerDTO;
 
 public interface CustomerDAO {
 	
-	abstract public CustomerDTO listThisCustomer(String id, String pw);
+	abstract public CustomerDTO listThisCustomer(String customer_Id, String customer_Password);
 	
 	abstract public int insertTheCustomer(HashMap<String, Object> cmap);
 	
-	abstract public int deleteTheCustomer(int customerIdx) ;
+	abstract public int deleteTheCustomer(int customer_Index) ;
 	
 }

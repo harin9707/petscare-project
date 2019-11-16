@@ -2,60 +2,100 @@ package com.test.dto;
 
 public class PetDTO {
 
-/*
-cid int(10) not null, 
-pet_id int(10) not null, 
-pet_name varchar(12) not null, 
-pet_type varchar(15) not null, 
-pet_gender varchar(3) not null, 
-pet_age int(4) not null, 
-pet_history text, 
-primary key(cid, pet_id),
-constraint pet_info_fk foreign key(cid) references personal_info(cid)
- */
-	
-	private int cid;
-	private int pet_id;
-	private String pet_name;
-	private String pet_type;
-	private String pet_gender;
-	private int pet_age;
-	
-	public int getCid() {
-		return cid;
+	/*
+	 * Pet_Index int not null auto_increment, Customer_Index int not null , Pet_Name
+	 * varchar(12) not null, Pet_Type varchar(15) not null, Pet_Gender varchar(3)
+	 * not null, Pet_Age int(4) not null, Pet_History text, primary key(Pet_Index),
+	 */
+
+	private int pet_Index;
+	private int customer_Index;
+	private String pet_Name;
+	private String pet_Type;
+	private String pet_Gender;
+	private int pet_Age;
+	private boolean pet_IsNeutralized;
+	private int pet_Weight;
+	private String pet_History;
+	private byte[] pet_Image;
+
+	public int getPet_Index() {
+		return pet_Index;
 	}
-	public void setCid(int cid) {
-		this.cid = cid;
+
+	public void setPet_Index(int pet_Index) {
+		this.pet_Index = pet_Index;
 	}
-	public int getPet_id() {
-		return pet_id;
+
+	public int getCustomer_Index() {
+		return customer_Index;
 	}
-	public void setPet_id(int pet_id) {
-		this.pet_id = pet_id;
+
+	public void setCustomer_Index(int customer_Index) {
+		this.customer_Index = customer_Index;
 	}
-	public String getPet_name() {
-		return pet_name;
+
+	public String getPet_Name() {
+		return pet_Name;
 	}
-	public void setPet_name(String pet_name) {
-		this.pet_name = pet_name;
+
+	public void setPet_Name(String pet_Name) {
+		this.pet_Name = pet_Name;
 	}
-	public String getPet_type() {
-		return pet_type;
+
+	public String getPet_Type() {
+		return pet_Type;
 	}
-	public void setPet_type(String pet_type) {
-		this.pet_type = pet_type;
+
+	public void setPet_Type(String pet_Type) {
+		this.pet_Type = pet_Type;
 	}
-	public String getPet_gender() {
-		return pet_gender;
+
+	public String getPet_Gender() {
+		return pet_Gender;
 	}
-	public void setPet_gender(String pet_gender) {
-		this.pet_gender = pet_gender;
+
+	public void setPet_Gender(String pet_Gender) {
+		this.pet_Gender = pet_Gender;
 	}
-	public int getPet_age() {
-		return pet_age;
+
+	public int getPet_Age() {
+		return pet_Age;
 	}
-	public void setPet_age(int pet_age) {
-		this.pet_age = pet_age;
+
+	public void setPet_Age(int pet_Age) {
+		this.pet_Age = pet_Age;
 	}
-	
+
+	public boolean isPet_IsNeutralized() {
+		return pet_IsNeutralized;
+	}
+
+	public void setPet_IsNeutralized(boolean pet_IsNeutralized) {
+		this.pet_IsNeutralized = pet_IsNeutralized;
+	}
+
+	public int getPet_Weight() {
+		return pet_Weight;
+	}
+
+	public void setPet_Weight(int pet_Weight) {
+		this.pet_Weight = pet_Weight;
+	}
+
+	public String getPet_History() {
+		return pet_History;
+	}
+
+	public void setPet_History(String pet_History) {
+		this.pet_History = pet_History;
+	}
+
+	public byte[] getPet_Image() {
+		return pet_Image;
+	}
+
+	public void setPet_Image(byte[] pet_Image) {
+		this.pet_Image = pet_Image;
+	}
 }

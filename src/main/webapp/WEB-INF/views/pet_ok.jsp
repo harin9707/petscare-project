@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!doctype html>
 <html lang="en">
 
@@ -14,49 +15,16 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- css -->
-    <link rel="stylesheet" href="<c:url value='/resources/css/style.css' />"/>
-	
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+
     <title>반려동물 예약</title>
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-
-    <script type="text/javascript">
-
-    $(function() {
-            $("#Customer_Image").on('change', function(){
-                readURL(this);
-            });
-        });
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                    $('#img-defult').attr('src', e.target.result);
-                }
-
-              reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-		
-        function logout(){
-			location.href = "logout";
-		}
-		
-		function deleteTheCustomer(){
-			location.href = "deleteTheCompany"; // 세션에서 customerIdx 받아오기!
-		}
-        
-    </script>
 </head>
 
 <body>
     <header>
         <nav class="menu navbar navbar-expand-lg navbar-light" id="top">
             <a class="navbar-brand" href="index.html">
-                <img src="<c:url value='/resources/images/logo.png' />" width="70" height="50" alt="logo">PET</a>
+                <img src="resources/images/logo.png" width="70" height="50" alt="logo">PET</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -64,16 +32,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.html">홈 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">소개</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="reserve.html">예약하기</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="search.html">업체찾기</a>
+                        <a class="nav-link active" href="reserve.html">예약하기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">제휴문의</a>
@@ -105,80 +70,15 @@
     </header>
     <main class="container-fluid">
         <div class="row mx-auto main-container">
-            <div class="mx-auto main-block   col-12">
-
-
-
-                    <table class="mypage-table mt-5" align="center" height="40" width="430" border="0">
-                        <tr>
-                        <td><img id="Customer_Image" src="<c:url value='/resources/images/logo.png' />" width="150" height="150"></td>
-                        </tr>
-                    </table>
-                    <table class="mypage-table" align="center" height="40" width="430" border="0">
-                            <tr>
-                            <td><label class="mypage-user-id" id="Customer_Id" >아이디</td>
-                            </tr>
-                        </table>
-                    <table class="mypage-table" align="center" height="40" width="430" border="0">
-                        <tr>
-                                <td><input type="button" class="mypage-btn-group" value="정보수정하기" onclick="location.href='company_revise.html'"></td>
-                        </tr>
-                    </table>
-                    <table class="mypage-table" align="center" height="40" width="430" border="0">
-                        <tr>
-                                <td><input type="button" class="mypage-btn-group" value="예약조회하기" onclick="location.href='company_reserve_check.html'"></td>
-                        </tr>
-                    </table>
-
-                  <table class="mypage-table" align="center" height="40" width="430" border="0">
-                        <tr>
-                                <td><input type="button" class="mypage-btn-group" value="후기조회하기" onclick="location.href='review_list.html'"></td>
-                        </tr>
-                    </table>
+            <div class="col-10 mx-auto main-block">
+                <h1><i class="fas fa-check"></i></h1>
+                <h1>펫 등록 완료</h1>
+                <p>펫 등록이 완료되었습니다.</p>
+                <hr>
+                <a class="btn btn-lg btn-secondary mx-auto" href="index" .html" role="button">확인</a>
             </div>
         </div>
     </main>
-    
-    <hr/>
-	
-	<div class="main">
-		
-		<table>
-			<caption></caption>
-			<thead>
-				<tr>
-					<th>회사 사업자 번호</th>
-					<th>회사 아이디</th>
-					<th>회사 비밀번호</th>
-					<th>회사 이름</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${ company.company_Index }</td>
-					<td>${ company.company_Id }</td>
-					<td>${ company.company_Password }</td>
-					<td>${ company.company_UserName }</td>
-				</tr>
-				<!-- session에 저장된 customer -->
-			</tbody>
-			<tfoot></tfoot>
-		</table>
-		
-		<hr/>
-		
-		<div class="logoutButton">
-			<button onclick="logout();">로그아웃</button>
-		</div>
-		
-		<hr/>
-		
-		<div class="deleteCompanyButton">
-			<button onclick="deleteTheCompany();">회원 탈퇴</button>
-		</div>
-		
-	</div>
-    
     <footer class="container-fluid">
         <div class="row footer-container">
             <div class="col-12">

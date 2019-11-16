@@ -23,7 +23,7 @@ public class CompanyController {
 		if(session.getAttribute("company") != null) {
 			try {
 				CompanyDTO company = (CompanyDTO) session.getAttribute("company"); // Get the Company Session
-				System.out.println("company => " + company.getId());
+				System.out.println("company => " + company.getCompany_Index());
 				// ActiveMQ Receive from its companyIdx Queue
 			} catch (SecurityException e) {
 				// TODO Auto-generated catch block
@@ -39,30 +39,30 @@ public class CompanyController {
 			// false // Exception Handling
 		}
 		
-		return "companyprofile"; // companyprofile.jsp // views 폴더 내
+		return "companyprofile"; // companyprofile.jsp // views �뤃�뜑 �궡
 	}
 	
 //	@RequestMapping(value="/signupDo", method=RequestMethod.POST, headers=("content-type=multipart/*"))
 //	public String signupDo(MultipartHttpServletRequest multipartHttpServletRequest, @RequestParam HashMap<String, Object> cmap) {
-//		// 해당 이미지는, form에서 imageFile이라는 name으로 지정되었으므로, "imageFile"이란 Key로 해당 FileMap에 저장된다!
-//		// MultipartHttpServletRequest는, 기존 HttpServletRequest를 가져다가,
-//		// multipart 데이터를 처리할 수 있게끔 이를 바꾸어놓고, 이를 통해, 이미지 등을 가져올 수 있게 된다!
-//		// request.getParameter("imageFile")의 multipart 버전!
+//		// �빐�떦 �씠誘몄��뒗, form�뿉�꽌 imageFile�씠�씪�뒗 name�쑝濡� 吏��젙�릺�뿀�쑝誘�濡�, "imageFile"�씠�� Key濡� �빐�떦 FileMap�뿉 ���옣�맂�떎!
+//		// MultipartHttpServletRequest�뒗, 湲곗〈 HttpServletRequest瑜� 媛��졇�떎媛�,
+//		// multipart �뜲�씠�꽣瑜� 泥섎━�븷 �닔 �엳寃뚮걫 �씠瑜� 諛붽씀�뼱�넃怨�, �씠瑜� �넻�빐, �씠誘몄� �벑�쓣 媛��졇�삱 �닔 �엳寃� �맂�떎!
+//		// request.getParameter("imageFile")�쓽 multipart 踰꾩쟾!
 //		System.out.println("11111111111111111");
 //		Map<String, MultipartFile> fileMap = multipartHttpServletRequest.getFileMap();
 //		byte[] imageFile = null;
 //		System.out.println("22222222222222222");
 //		try {
-//			imageFile = fileMap.get("imageFile").getBytes(); // 파일
-//			String fileName = fileMap.get("imageFile").getName(); // 파일명
+//			imageFile = fileMap.get("imageFile").getBytes(); // �뙆�씪
+//			String fileName = fileMap.get("imageFile").getName(); // �뙆�씪紐�
 //			System.out.println("33333333333333333");
 //			if(fileMap.isEmpty() || imageFile == null) { // null
 //				System.out.println("No Image File!");
 //				cmap.put("imageFile", null);
 //				cmap.put("image", "No File");
 //			}else { // not null
-//				int dotIdx = fileName.lastIndexOf("."); // 확장자 기준 인덱스 확보!
-//				String fileExtension = fileName.substring(dotIdx + 1).toLowerCase(); // 파일 확장자 저장!
+//				int dotIdx = fileName.lastIndexOf("."); // �솗�옣�옄 湲곗� �씤�뜳�뒪 �솗蹂�!
+//				String fileExtension = fileName.substring(dotIdx + 1).toLowerCase(); // �뙆�씪 �솗�옣�옄 ���옣!
 //				
 //				System.out.println("!!!!!!!!!!!! File Extension => " + fileExtension);
 //				
@@ -74,26 +74,26 @@ public class CompanyController {
 //				}else {
 //					// Normal image file
 //					System.out.println("Right Image File");
-//					cmap.put("imageFile", imageFile); // 이미지 파일 저장
-//					cmap.put("image", fileName); // 파일명을 image 컬럼에 저장하게끔!
+//					cmap.put("imageFile", imageFile); // �씠誘몄� �뙆�씪 ���옣
+//					cmap.put("image", fileName); // �뙆�씪紐낆쓣 image 而щ읆�뿉 ���옣�븯寃뚮걫!
 //				}
 //			}
 //		} catch (IOException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//		// DB에 해당 업체 이미지와 함께 저장!
+//		// DB�뿉 �빐�떦 �뾽泥� �씠誘몄��� �븿猿� ���옣!
 //		int res = this.companyDao.insertTheCompany(cmap);
 //		System.out.println("company insert result => " + res);
 //		
-//		return "redirect:/"; // index.jsp // views 폴더 내
+//		return "redirect:/"; // index.jsp // views �뤃�뜑 �궡
 //	}
 	
 //	@RequestMapping("/getImageFile")
 //	public ResponseEntity<byte[]> getImageFile(Model model, HttpSession session) {
 //		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
 //		
-//		byte[] imageFile = null; // 파일명을 image에 저장은 했지만, 불필요
+//		byte[] imageFile = null; // �뙆�씪紐낆쓣 image�뿉 ���옣�� �뻽吏�留�, 遺덊븘�슂
 //		
 //		if(company != null) {
 //			imageFile = company.getImageFile();
@@ -102,9 +102,9 @@ public class CompanyController {
 //		HttpHeaders headers = new HttpHeaders(); // no need to be final
 //		headers.setContentType(MediaType.IMAGE_JPEG);
 //		
-//		// ResponseEntity => HttpServletResponse를 통해, 헤더를 지정해주면서 imageFile 객체를 생성해 이를 반환!
+//		// ResponseEntity => HttpServletResponse瑜� �넻�빐, �뿤�뜑瑜� 吏��젙�빐二쇰㈃�꽌 imageFile 媛앹껜瑜� �깮�꽦�빐 �씠瑜� 諛섑솚!
 //		return new ResponseEntity<byte[]>(imageFile, headers, HttpStatus.OK);
-//		// no jsp // img 태그의 src 속성값으로 활용
+//		// no jsp // img �깭洹몄쓽 src �냽�꽦媛믪쑝濡� �솢�슜
 //	}
 	
 }

@@ -7,6 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.test.constants.Constant;
+import com.test.constants.Constant.ESession;
+
 @Controller
 @SessionAttributes({"customer", "company"})
 public class HomeController {
@@ -19,23 +22,26 @@ public class HomeController {
 	
 	@RequestMapping({"/", "index"})
 	public String index(Model model) {
-		System.out.println("PetUtil Home for console update");
+		System.out.println("/ or index");
 		return "redirect:/"; // index.jsp
 	}
 	
 	@RequestMapping("/loginOrProfile")
 	public String loginOrProfile(Model model, HttpSession session) {
 		String url = "";
-		if(session.getAttribute("customer") != null) {
-			// logged in
-			url = "profile";
-		}else {
+		if(Constant.eSession == ESession.eNull) {
 			// not logged in
 			url = "login";
+		}else if(Constant.eSession == ESession.eError){
+			// both logged in
+			url = "/";
+		}else {
+			// eCompany, eCustomer
+			url = "profile";
 		}
-		
 		return "redirect:" + url;
 		// profile.jsp OR login.jsp
 	}
+	
 	
 }

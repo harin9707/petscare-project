@@ -11,17 +11,17 @@ import com.test.dto.CustomerDTO;
 
 @Repository
 public class CustomerDAOimpl implements CustomerDAO {
-	// @Repository // DAO 클래스에 필수적인 어노테이션, 그래야 인식 가능!
+	// @Repository // DAO �겢�옒�뒪�뿉 �븘�닔�쟻�씤 �뼱�끂�뀒�씠�뀡, 洹몃옒�빞 �씤�떇 媛��뒫!
 	
-	@Autowired // root-context.xml 참고
+	@Autowired // root-context.xml 李멸퀬
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public CustomerDTO listThisCustomer(String id, String pw) {
+	public CustomerDTO listThisCustomer(String customer_Id, String customer_Password) {
 		// TODO Auto-generated method stub
 		Map<String, String> customer = new HashMap<String, String>();
-		customer.put("id", id);
-		customer.put("pw", pw);
+		customer.put("customer_Id", customer_Id);
+		customer.put("customer_Password", customer_Password);
 		return this.sqlSession.selectOne("listThisCustomer", customer);
 	}
 
@@ -35,11 +35,11 @@ public class CustomerDAOimpl implements CustomerDAO {
 	}
 
 	@Override
-	public int deleteTheCustomer(int customerIdx) {
+	public int deleteTheCustomer(int customer_Index) {
 		// TODO Auto-generated method stub
-		System.out.println("!!!!" + customerIdx);
+		System.out.println("!!!!" + customer_Index);
 		
-		return this.sqlSession.delete("deleteTheCustomer", customerIdx);
+		return this.sqlSession.delete("deleteTheCustomer", customer_Index);
 	}
 	
 }

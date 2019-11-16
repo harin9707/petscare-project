@@ -1,87 +1,95 @@
 package com.test.dto;
 
 public class CustomerDTO {
-	
+
 	/*
-cid int(10) not null,
-id varchar(12) not null, 
-pwd varchar(12) not null, 
-name varchar(10) not null, 
-birthDate date not null, 
-phone_number varchar(13) not null, 
-city varchar(20) not null,
-gu varchar(20) not null,
-dong varchar(20) not null,
-email varchar(200) not null,
-pet_id int(10) not null, 
-primary key(cid),
-unique key(pwd),
-unique key(phone_number)
+	 * Customer_Index int not null auto_increment, Customer_Id varchar(12) not null,
+	 * Customer_Password varchar(12) not null, Customer_Name varchar(10) not null,
+	 * Customer_BirthDate varchar(30) not null, Customer_PhoneNumber varchar(13) not
+	 * null, Customer_Address varchar(50) not null, Customer_Email varchar(80) not
+	 * null, Customer_Image mediumblob, primary key(Customer_Index), unique
+	 * key(Customer_Password), unique key(Customer_PhoneNumber)
 	 */
-	
-	private int cid;
-	private String id;
-	private String pwd;
-	private String name;
-	private String phone_number;
-	private String city;
-	private String gu;
-	private String dong;
-	private String email;
-	
-	public int getCid() {
-		return cid;
+
+	private int customer_Index;
+	private String customer_Id;
+	private String customer_Password;
+	private String customer_Name;
+	private String customer_BirthDate;
+	private String customer_PhoneNumber;
+	private String customer_Address;
+	private String customer_Email;
+	private byte[] customer_Image;
+
+	public int getCustomer_Index() {
+		return customer_Index;
 	}
-	public void setCid(int cid) {
-		this.cid = cid;
+
+	public void setCustomer_Index(int customer_Index) {
+		this.customer_Index = customer_Index;
 	}
-	public String getId() {
-		return id;
+
+	public String getCustomer_Id() {
+		return customer_Id;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setCustomer_Id(String customer_Id) {
+		this.customer_Id = customer_Id;
 	}
-	public String getPwd() {
-		return pwd;
+
+	public String getCustomer_Password() {
+		return customer_Password;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+
+	public void setCustomer_Password(String customer_Password) {
+		this.customer_Password = customer_Password;
 	}
-	public String getName() {
-		return name;
+
+	public String getCustomer_Name() {
+		return customer_Name;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setCustomer_Name(String customer_Name) {
+		this.customer_Name = customer_Name;
 	}
-	public String getPhone_number() {
-		return phone_number;
+
+	public String getCustomer_BirthDate() {
+		return customer_BirthDate;
 	}
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+
+	public void setCustomer_BirthDate(String customer_BirthDate) {
+		this.customer_BirthDate = customer_BirthDate;
 	}
-	public String getCity() {
-		return city;
+
+	public String getCustomer_PhoneNumber() {
+		return customer_PhoneNumber;
 	}
-	public void setCity(String city) {
-		this.city = city;
+
+	public void setCustomer_PhoneNumber(String customer_PhoneNumber) {
+		this.customer_PhoneNumber = customer_PhoneNumber;
 	}
-	public String getGu() {
-		return gu;
+
+	public String getCustomer_Address() {
+		return customer_Address;
 	}
-	public void setGu(String gu) {
-		this.gu = gu;
+
+	public void setCustomer_Address(String customer_Address) {
+		this.customer_Address = customer_Address;
 	}
-	public String getDong() {
-		return dong;
+
+	public String getCustomer_Email() {
+		return customer_Email;
 	}
-	public void setDong(String dong) {
-		this.dong = dong;
+
+	public void setCustomer_Email(String customer_Email) {
+		this.customer_Email = customer_Email;
 	}
-	public String getEmail() {
-		return email;
+
+	public byte[] getCustomer_Image() {
+		return customer_Image;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setCustomer_Image(byte[] customer_Image) {
+		this.customer_Image = customer_Image;
 	}
-	
 }

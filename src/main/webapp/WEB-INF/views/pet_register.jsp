@@ -21,42 +21,13 @@
 
 <title>반려동물 예약</title>
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 
-<script type="text/javascript">
-	$(function() {
-		$("#Customer_Image").on('change', function() {
-			readURL(this);
-		});
-	});
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				$('#img-defult').attr('src', e.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	function logout() {
-		location.href = "logout";
-	}
-
-	function deleteTheCustomer() {
-		location.href = "deleteTheCustomer"; // 세션에서 customerIdx 받아오기!
-	}
-</script>
 </head>
 
 <body>
 	<header>
 		<nav class="menu navbar navbar-expand-lg navbar-light" id="top">
-			<a class="navbar-brand" href="index.html"> <img
+			<a class="navbar-brand" href="index.jsp"> <img
 				src="<c:url value='/resources/images/logo.png' />" width="70"
 				height="50" alt="logo">PET
 			</a>
@@ -99,112 +70,62 @@
 	<main class="container-fluid">
 		<div class="row mx-auto main-container">
 			<div class="mx-auto main-block   col-12">
-
-				<!-- <img id="Customer_Image" src="./images/profile.png" width="100" height="100"> -->
-
-
-
-
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><img id="Customer_Image" src="./images/profile.png"
-							width="150" height="150"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><label class="mypage-user-id" id="Customer_Id">아이디</td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="펫등록하기" onclick="location.href='pet_register.html'"></td>
-
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="정보수정하기" onclick="location.href='customer_revise.html'"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="예약조회하기" onclick="location.href='reserve_check.html'"></td>
-					</tr>
-				</table>
-
-				<hr />
-
-				<div class="main">
-
-					<table>
-						<caption></caption>
-						<thead>
-							<tr>
-								<th>고객 번호</th>
-								<th>고객 아이디</th>
-								<th>고객 비밀번호</th>
-								<th>고객 이름</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>${ customer.customer_Index }</td>
-								<td>${ customer.customer_Password }</td>
-								<td>${ customer.customer_Name }</td>
-							</tr>
-							<!-- session에 저장된 customer -->
-						</tbody>
-						<tfoot></tfoot>
-					</table>
-
-					<hr />
-
-					<table>
-						<caption></caption>
-						<thead>
-							<tr>
-								<th>펫 번호</th>
-								<th>펫 이름</th>
-								<th>펫 종류</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${ pets }" var="pet">
-								<tr>
-									<td>${ pet.pet_Index }</td>
-									<td>${ pet.pet_Name }</td>
-									<td>${ pet.pet_Type }</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot></tfoot>
-					</table>
-
-				</div>
-
-				<hr />
-
-				<div class="logoutButton">
-					<button onclick="logout();">로그아웃</button>
-				</div>
-
-				<hr />
-
-				<div class="deleteCustomerButton">
-					<button onclick="deleteTheCustomer();">회원 탈퇴</button>
-				</div>
-
-
-
+				<h1 class="pet_register_title">펫 등록하기</h1>
+				<form class="pet_register" name="pet_register" method="post"
+					action="pet_ok">
+					<div class="form-group row">
+						<label class="col-sm-2 " for="pet_Name">이름</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_Name"
+								name="pet_Name" placeholder="멍멍이" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_Type">종</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_Type"
+								name="pet_Type" placeholder="강아지" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class=" col-sm-2 col-form-label" for="pet_Gender">성별</label>
+						<div class="gender-radio-group col-sm-8">
+							<input type="radio" name="pet_Gender" value="암컷">암컷 <input
+								type="radio" name="pet_Gender" value="수컷">수컷
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_Age">나이(개월수)</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="number" id="pet_Age"
+								name="pet_Age" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_IsNeutralized">중성화수술</label>
+						<div class="col-sm-8" id="pet_IsNeutralized">
+							<input type="radio" name="pet_IsNeutralized" value="1" checked="checked"> O 
+							<input type="radio" name="pet_IsNeutralized" value="0"> X
+						</div>
+					</div>
+					<div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="pet_Weight">무게</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="pet_Weight" placeholder="kg"
+                                name="pet_Weight" required>
+                        </div>
+                    </div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_History">기타사항</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_History"
+								name="pet_History" placeholder="없을 경우 '없음'">
+						</div>
+					</div>
+					<div class="register-btn-div row">
+						<button type="submit" class="register-btn">등록하기</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</main>

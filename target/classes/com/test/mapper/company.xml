@@ -6,21 +6,21 @@
 <mapper namespace="com.test.dto.CompanyDTO">
 
   <select id="listThisCompany" parameterType="java.util.Map" resultType="com.test.dto.CompanyDTO">
-    select * from business_info where id = #{ id } and pwd = #{ pw }
+    select * from Company where company_Id = #{ company_Id } and company_Password = #{ company_Password }
   </select>
   <!-- userId와 userPw는 실제 컬럼명, 여기선 map 객체인 user에 저장된 key값들인 id와 pw로 값 찾아내 적어준 것일 뿐
         user.id, user.pw, 이렇게 하는 건, 객체를 user란 이름의 객체를 넘겨주어, VO 혹은 DTO로 get해주는 방식이었던 것 -->
   
   <insert id="insertTheCompany" parameterType="java.util.Map">
-     insert into business_info
-        (id, pwd, name, business_number, phone_number, city, gu, dong, email, business_type, profile)
+     insert into Company
+        (company_Index, company_Id, company_Password, company_UserName, company_Address, company_Email, company_UserPhoneNumber, company_Name, company_Number, company_Type, company_Image)
      values
-        (#{id}, #{pw}, #{name}, #{businessNumber}, #{phoneNumber},
-        #{address1}, #{address2}, #{address3}, #{email}, #{businessType}, #{intro})
+        (#{company_Index}, #{company_Id}, #{company_Password}, #{company_UserName}, #{company_Address},
+        #{company_Email}, #{company_UserPhoneNumber}, #{company_Name}, #{company_Number}, #{company_Type}, #{company_Image})
   </insert>
   
   <delete id="deleteTheCompany">
-     delete from business_info where business_number = #{ corporateNumber }
+     delete from Company where company_Index = #{ company_Index }
   </delete>
   
   <!-- 세미콜론 없이 쿼리문 작성! -->
