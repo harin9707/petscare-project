@@ -1,21 +1,28 @@
 package com.test.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.test.dto.CompanyDTO;
 
 @Repository
 public class CompanyDAOimpl implements CompanyDAO {
-	// @Repository // DAO �겢�옒�뒪�뿉 �븘�닔�쟻�씤 �뼱�끂�뀒�씠�뀡, 洹몃옒�빞 �씤�떇 媛��뒫!
+	// @Repository //
 	
 	@Autowired // root-context.xml 李멸퀬
 	private SqlSessionTemplate sqlSession;
+	
+
+	@Override
+	public List<CompanyDTO> listAllCompany() {
+		return this.sqlSession.selectList("listAllCompany");
+	}
+	
 	
 	@Override
 	public CompanyDTO listThisCompany(String company_Id, String company_Password) {
@@ -43,5 +50,5 @@ public class CompanyDAOimpl implements CompanyDAO {
 		
 		return this.sqlSession.delete("deleteTheCompany", company_Index);
 	}
-	
+
 }

@@ -12,10 +12,10 @@
 	<insert id="insertThePet" parameterType="java.util.Map">
 		insert into Pet
 		(pet_Index, customer_Index, pet_Name, pet_Type, pet_Gender, pet_Age,
-		pet_IsNeutralized, pet_Weight, pet_History, pet_Image)
+		pet_IsNeutralized, pet_Weight, pet_History)
 		values(#{ pet_Index }, #{ customer_Index }, #{pet_Name}, #{pet_Type},
 		#{pet_Gender}, #{pet_Age}, #{pet_IsNeutralized}, #{pet_Weight},
-		#{pet_History}, #{pet_Image})
+		#{pet_History})
 	</insert>
 
 	<delete id="deleteThePet">

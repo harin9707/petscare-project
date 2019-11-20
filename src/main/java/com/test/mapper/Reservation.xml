@@ -55,11 +55,13 @@
 		insert into
 		Reservation
 		(pet_Index, company_Index, reservation_Date,
-		reservation_Time)
+		reservation_Time, reservation_DetailService)
 		values(#{pet_Index}, #{company_Index},
 		#{reservation_Date},
-		#{reservation_Time})
+		#{reservation_Time},
+		#{reservation_DetailService})
 	</insert>
+	
 	<delete id="deleteTheReservation">
 		delete from Reservation where reservation_Index = #{
 		reservation_Index }

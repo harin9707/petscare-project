@@ -28,11 +28,8 @@ public class ReservationDAOimpl implements ReservationDAO {
 
 	@Override
 	public int insertTheReservation(HashMap<String, Object> rmap, int customer_Index) {
-		rmap.put("customer_Index", customer_Index);
-		System.out.println(rmap.get("customer_Index"));
-		System.out.println(rmap.get("pet_Name"));
-		PetDTO petDTO = this.sqlSession.selectOne("listPetIndex", rmap);
-		System.out.println(petDTO.getPet_Index());
+		//날짜와 시간 처리
+		//----------------------------------------------------------
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat dateTime = new SimpleDateFormat("HH:mm:ss");
 		
@@ -45,14 +42,24 @@ public class ReservationDAOimpl implements ReservationDAO {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		//----------------------------------------------------------
 		
-		rmap.put("pet_Index", petDTO.getPet_Index());		
-		rmap.put("company_Index", 1);
+		
+		System.out.println(rmap.get("pet_Index"));
+		System.out.println(rmap.get("company_Index"));
+		System.out.println(reservation_Date);
+		System.out.println(reservation_Time);
+		System.out.println(rmap.get("reservation_DetailService"));
+		
+		rmap.put("pet_Index", rmap.get("pet_Index"));		
+		rmap.put("company_Index", rmap.get("company_Index"));
 		rmap.put("reservation_Date", date.format(reservation_Date));
 		rmap.put("reservation_Time", dateTime.format(reservation_Time));
+		rmap.put("reservation_DetailService",rmap.get("reservation_DetailService"));
 		
 		return this.sqlSession.insert("insertTheReservation", rmap);
 	}
+	
 	@Override
 	public int deleteTheReservation(int reservation_Index) {
 		// TODO Auto-generated method stub

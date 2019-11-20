@@ -46,9 +46,16 @@ public class ResevationController {
 		HttpSession session = request.getSession();
 		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
 		if (customer != null) {
+			//고객이 가지고 있는 펫 정보 다 가져오기
 			int customerIdx = customer.getCustomer_Index();
+			System.out.println("예약중인 고객 번호 : " + customerIdx);
+			
 			List<PetDTO> itsPets = this.petDao.listItsPets(customerIdx);
-			model.addAttribute("pet", itsPets);
+			model.addAttribute("petList", itsPets);
+			//DB에 저장된 회사정보 가져오기
+			List<CompanyDTO> companyDTO = this.companyDao.listAllCompany();			
+			model.addAttribute("companyList", companyDTO);
+			
 			url = "reserve";
 		} else {
 			url = "redirect:/";
@@ -61,6 +68,7 @@ public class ResevationController {
 	public String reserve_Ok(@RequestParam HashMap<String, Object> rmap, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
+		
 		System.out.println("예약완료지롱");
 		this.userReserve(rmap, customer);
 		return "reserve_ok"; 
@@ -94,7 +102,7 @@ public class ResevationController {
 				model.addAttribute("reservation", itsReservations);
 			}
 		}
-		return "reserve_check"; // login.jsp // views ?�뜝�룞�삕?�뜝�룞�삕 ?�뜝�룞�삕
+		return "reserve_check";
 	}
 
 }

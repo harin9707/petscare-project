@@ -5,6 +5,11 @@
   
 <mapper namespace="com.test.dto.CompanyDTO">
 
+  <select id="listAllCompany" resultType="com.test.dto.CompanyDTO">
+    select * from Company;
+  </select>
+
+
   <select id="listThisCompany" parameterType="java.util.Map" resultType="com.test.dto.CompanyDTO">
     select * from Company where company_Id = #{ company_Id } and company_Password = #{ company_Password }
   </select>
