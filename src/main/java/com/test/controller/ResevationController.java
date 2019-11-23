@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import com.test.dao.CompanyDAO;
 import com.test.dao.CustomerDAO;
 import com.test.dao.PetDAO;
@@ -108,6 +108,26 @@ public class ResevationController {
 			model.addAttribute("reservation", itsReservations);
 		}
 		return "company_reserve_check"; // login.jsp // views
+	}
+
+
+	@RequestMapping(value = "/customer_reservation_cancel", method = RequestMethod.GET)
+	public String customer_reservation_delete(Model model,HttpServletRequest httpServletRequest, HttpSession session) {
+
+		int reservationNum = Integer.parseInt(httpServletRequest.getParameter("index"));
+		System.out.println("예약번호: "+ reservationNum);
+		
+			CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
+			int customerIdx = customer.getCustomer_Index();
+			List<ReservationDTO> itsReservations = this.reservationDAO.listItsCustReservations(customerIdx);
+			
+			for (ReservationDTO reservationDTO : itsReservations) {
+				if(reservationDTO.getReservation_Index() == reservationNum) {
+					reservationDAO.cancelTheReservation(reservationNum);
+				}
+			}
+			System.out.println("예약취소되었습니다.");
+		return "customerprofile";
 	}
 	
 }

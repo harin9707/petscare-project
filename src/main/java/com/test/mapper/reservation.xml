@@ -64,6 +64,9 @@
 		delete from Reservation where reservation_Index = #{
 		reservation_Index }
 	</delete>
+	<update id="cancelTheReservation" >
+		update Reservation set reservation_Check = 'canceled' where reservation_Index = #{reservation_Index}
+	</update>
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 
 </mapper>

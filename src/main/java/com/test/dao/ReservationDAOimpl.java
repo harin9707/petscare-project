@@ -26,6 +26,7 @@ public class ReservationDAOimpl implements ReservationDAO {
 		return this.sqlSession.selectList("listItsCustReservations", pet_Index);
 	}
 
+	
 	@Override
 	public int insertTheReservation(HashMap<String, Object> rmap, int customer_Index) {
 		//날짜와 시간 처리
@@ -49,12 +50,14 @@ public class ReservationDAOimpl implements ReservationDAO {
 		System.out.println(reservation_Date);
 		System.out.println(reservation_Time);
 		System.out.println(rmap.get("reservation_DetailService"));
+		System.out.println(rmap.get("reservation_Check"));
 		
 		rmap.put("pet_Index", rmap.get("pet_Index"));		
 		rmap.put("company_Index", rmap.get("company_Index"));
 		rmap.put("reservation_Date", date.format(reservation_Date));
 		rmap.put("reservation_Time", dateTime.format(reservation_Time));
 		rmap.put("reservation_DetailService",rmap.get("reservation_DetailService"));
+		rmap.put("reservation_Check",rmap.get("reservation_Check"));
 		
 		return this.sqlSession.insert("insertTheReservation", rmap);
 	}
@@ -68,6 +71,12 @@ public class ReservationDAOimpl implements ReservationDAO {
 	public List<ReservationDTO> listItsCompReservations(int company_Index) {
 		// TODO Auto-generated method stub
 		return this.sqlSession.selectList("listItsCompReservations", company_Index);
+	}
+
+
+	@Override
+	public int cancelTheReservation(int reservation_Index) {
+		return this.sqlSession.update("cancelTheReservation", reservation_Index);
 	}
 
 	

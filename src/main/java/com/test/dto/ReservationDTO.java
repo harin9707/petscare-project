@@ -11,8 +11,10 @@ public class ReservationDTO {
 	 * varchar(15) not null, Reservation_Date Date not null, Reservation_Time
 	 * Datetime not null
 	 */
-	private int pet_Index;
+	//customer
 	private int customer_Index;
+	//pet
+	private int pet_Index;
 	private String pet_Name;
 	private String pet_Type;
 	private String pet_Gender;
@@ -21,10 +23,14 @@ public class ReservationDTO {
 	private int pet_Weight;
 	private String pet_History;
 	private byte[] pet_Image;
+	//reservation
 	private int reservation_Index;
-	private int company_Index;
 	private String reservation_Date;
 	private String reservation_Time;
+	private String reservation_DetailService;
+	private String reservation_Check;
+	//company
+	private int company_Index;
 	private String company_Id;
 	private String company_Password ;
 	private String company_UserName ;
@@ -180,4 +186,20 @@ public class ReservationDTO {
 	public void setReservation_Time(String reservation_Time) {
 		this.reservation_Time = reservation_Time;
 	}
+	
+	
+	public String getReservation_DetailService() {
+		return reservation_DetailService;
+	}
+	public void setReservation_DetailService(String reservation_DetailService) {
+		this.reservation_DetailService = reservation_DetailService;
+	}
+	public String getReservation_Check() {
+		return reservation_Check;
+	}
+	public void setReservation_Check(String reservation_Check) {
+		this.reservation_Check = reservation_Check;
+	}
+	
+	
 }

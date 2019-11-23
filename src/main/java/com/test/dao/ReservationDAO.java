@@ -14,5 +14,6 @@ public interface ReservationDAO {
 	abstract public int insertTheReservation(HashMap<String, Object> rmap, int customer_Index);	
 	
 	abstract public int deleteTheReservation(int index);
+	abstract public int cancelTheReservation(int reservation_Index);
 	
 }
