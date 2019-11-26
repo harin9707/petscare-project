@@ -41,6 +41,7 @@ public class MemberController {
 		return "login"; // login.jsp // views ?占쏙옙?占쏙옙 ?占쏙옙
 	}
 
+
 	@RequestMapping("/loginDo")
 	public String loginDo(Model model, String id, String pw, HttpSession session, SessionStatus status) {
 		CustomerDTO customer = this.customerDao.listThisCustomer(id, pw);
@@ -95,6 +96,8 @@ public class MemberController {
 		}
 		return "customerprofile"; // customerprofile.jsp // views
 	}
+	
+
 
 	@RequestMapping("/signup")
 	public String signup(Model model) {

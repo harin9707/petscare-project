@@ -13,4 +13,8 @@ public interface PetDAO {
 	
 	abstract public int deleteThePet(int pet_Index);
 	
+	abstract public void  update(PetDTO pt) ;
+	
+	abstract public PetDTO read(int customer_Index,int pet_Index);
+	
 }

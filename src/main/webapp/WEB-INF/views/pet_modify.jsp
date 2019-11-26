@@ -21,45 +21,13 @@
 
 <title>반려동물 예약</title>
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 
-<script type="text/javascript">
-	
-	$(function() {
-		$("#Customer_Image").on('change', function() {
-			readURL(this);
-		});
-	});
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				$('#img-defult').attr('src', e.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	function logout() {
-		location.href = "logout";
-	}
-
-	function deleteTheCustomer() {
-		location.href = "deleteTheCustomer"; // 세션에서 customerIdx 받아오기!
-	}
-	
-
-</script>
 </head>
 
 <body>
 	<header>
 		<nav class="menu navbar navbar-expand-lg navbar-light" id="top">
-			<a class="navbar-brand" href="index.html"> <img
+			<a class="navbar-brand" href="index.jsp"> <img
 				src="<c:url value='/resources/images/logo.png' />" width="70"
 				height="50" alt="logo">PET
 			</a>
@@ -99,86 +67,67 @@
 			</div>
 		</nav>
 	</header>
-	
-	
 	<main class="container-fluid">
-        <div class="row mx-auto main-container">
-            <div class="col-10 mx-auto main-block">
-                <table class="title-table ml-auto mr-auto" height="90">
-                    <tr>
-                       <div class="card mb-3 mt-5 ml-auto mr-auto p-2" style="max-width: 540px;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-     <img src="<c:url value='/resources/images/logo.png' />" class="card-img" alt="..."> 
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title" id=customer_Name name=customer_Name>환영합니다! ${customer.customer_Name }님</h5>
-        <p class="card-text">
-        
-            <p name=customer_Email id=customer_Email>이메일: ${ customer.customer_Email }</p>
-            <p name=customer_Address id=customer_Address>주소: ${customer.customer_Address }</p>
-            <p name=customer_PhoneNumber id=customer_PhoneNumber>전화번호: ${customer.customer_PhoneNumber } </p>
-        </p>
-        <p class="card-text"><small class="text-muted">회원가입 날짜 2019.11.12</small></p>
-      </div>
-    </div>
-  </div>
-</div>
-                        <td><label>고객 마이페이지</label></td>
-                    </tr>
-                </table>
-               
-<span class="mb-3">나의 반려견 정보</span>
-               <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">반려 동물 이름</th>
-      <th scope="col">반려 동물 종</th>
-      <th scope="col">나이</th>
-      <th scope="col">성별</th>
-  
-    </tr>
-  </thead>
- 
-  <tbody>
-		<c:forEach items="${ pet }" var="pet">
-			<tr>
-			<td><a href="/hello/pet_modify?customer_Index=${customer.customer_Index }&pet_Index=${pet.pet_Index }">${pet.pet_Index }</a></td>
-			<td>${ pet.pet_Name }</td>
-			<td>${ pet.pet_Type }</td>
-			
-			<td>${ pet.pet_Age }</td>
-			<td>${ pet.pet_Gender }</td>
-			
-		</tr>
-	</c:forEach>
-   
-  </tbody>
-</table>
-
-<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="로그아웃" onclick="logout();"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group" value="회원탈퇴"
-							onclick="deleteTheCustomer();"></td>
-					</tr>
-				</table>
-
-</div>
-
-        </div>
-    </main>
-
-			
+		<div class="row mx-auto main-container">
+			<div class="mx-auto main-block   col-12">
+				<h1 class="pet_modify_title">펫 정보 수정하기</h1>
+				<form class="pet_modify" name="modify" method="post">
+					<div class="form-group row">
+						<label class="col-sm-2 " for="pet_Name">이름</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_Name"
+								name="pet_Name" value="${pet.pet_Name }">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_Type">종</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_Type"
+								name="pet_Type" value="${pet.pet_Type }">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class=" col-sm-2 col-form-label" for="pet_Gender">성별</label>
+						<div class="gender-radio-group col-sm-8">
+							<input type="radio" name="pet_Gender" value="암컷">암컷 
+							<input type="radio" name="pet_Gender" value="수컷">수컷
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_Age">나이(개월수)</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="number" id="pet_Age"
+								name="pet_Age" value="${pet.pet_Age }">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_IsNeutralized">중성화수술</label>
+						<div class="col-sm-8" id="pet_IsNeutralized">
+							<input type="radio" name="pet_IsNeutralized" value="1" > O 
+							<input type="radio" name="pet_IsNeutralized" value="0"> X
+						</div>
+					</div>
+					<div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="pet_Weight">무게</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="pet_Weight" placeholder="kg"
+                                name="pet_Weight" value="${pet.pet_Weight}">
+                        </div>
+                    </div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_History">기타사항</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_History"
+								name="pet_History" value="${pet.pet_History }">
+						</div>
+					</div>
+					<div class="register-btn-div row">
+						<button type="submit" class="register-btn">수정</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
 	<footer class="container-fluid">
 		<div class="row footer-container">
 			<div class="col-12">
