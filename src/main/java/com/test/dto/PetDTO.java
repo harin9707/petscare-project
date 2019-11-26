@@ -17,7 +17,6 @@ public class PetDTO {
 	private boolean pet_IsNeutralized;
 	private int pet_Weight;
 	private String pet_History;
-	private byte[] pet_Image;
 
 	public int getPet_Index() {
 		return pet_Index;
@@ -90,12 +89,5 @@ public class PetDTO {
 	public void setPet_History(String pet_History) {
 		this.pet_History = pet_History;
 	}
-
-	public byte[] getPet_Image() {
-		return pet_Image;
-	}
-
-	public void setPet_Image(byte[] pet_Image) {
-		this.pet_Image = pet_Image;
-	}
+	
 }

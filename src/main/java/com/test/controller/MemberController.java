@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.test.constants.Constant;
 import com.test.constants.Constant.ESession;
@@ -68,10 +69,10 @@ public class MemberController {
 
 	@RequestMapping("/logout")
 	public String logout(Model model, SessionStatus status) {
+		Constant.eSession = ESession.eNull;
 		status.setComplete();
 		System.out.println("~~~logout~~~");
-
-		return "redirect:/"; // index.jsp // views
+		return "redirect:/";
 	}
 
 	@RequestMapping("/customerprofile")
@@ -93,7 +94,6 @@ public class MemberController {
 			// false
 			// Exception Handling
 		}
-
 		return "customerprofile"; // customerprofile.jsp // views
 	}
 
@@ -102,31 +102,54 @@ public class MemberController {
 		// insertTheCustomer
 		return "signup"; // signup.jsp // views
 	}
-
+	
 	@RequestMapping("/signupDo")
-	public String signupDo(@RequestParam HashMap<String, Object> cmap) {
-		String flag = (String) cmap.get("flag"); // 怨좉컼�씤媛� 湲곗뾽�씤媛�
+	public String signupDo(String flag) {
+		// 기업인지 개인인지 구분
 		String url = "";
+		System.out.println(flag + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		if (flag.equals("user")) {
-			this.userSignup(cmap);
-		} else if (flag.equals("corp")) {
-			this.corpSignup(cmap);
+			// this.userSignup(cmap);
+			url = "customer_signup";
+		} else if (flag.equals("comp")) {
+			// this.compSignup(cmap);
+			url = "company_signup";
 		} else {
 			System.out.println("NoBody");
 		}
+		return url;
+	}
+	
+	@RequestMapping("/customer_signupDo")
+	public String customer_signupDo(@RequestParam HashMap<String, Object> cmap) {
+		int res = this.customerDao.insertTheCustomer(cmap);
+		System.out.println("customer insert result => " + res);
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/company_signupDo")
+	public String company_signupDo(@RequestParam HashMap<String, Object> cmap) {
+		int res = this.companyDao.insertTheCompany(cmap);
+		System.out.println("company insert result => " + res);
 		return "redirect:/";
 	}
 
-	public int userSignup(HashMap<String, Object> cmap) {
-		int res = this.customerDao.insertTheCustomer(cmap);
-		System.out.println("customer insert result => " + res);
-		return res;
+	@RequestMapping("/customer_modify")
+	public ModelAndView customer_modify(ModelAndView mv, HttpSession session) {
+		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
+		//해댱 ID와 비밀번호를 가진 고객을 가져온다.
+		customer = this.customerDao.listThisCustomer(customer.getCustomer_Id(), customer.getCustomer_Password());
+		mv.addObject("customer", customer);
+		mv.setViewName("customer_modify");		
+		
+		return mv;
 	}
-
-	public int corpSignup(HashMap<String, Object> cmap) {
-		int res = this.companyDao.insertTheCompany(cmap);
-		System.out.println("company insert result => " + res);
-		return res;
+	
+	@RequestMapping("/customer_modify_ok")
+	public String customer_modify(@RequestParam HashMap<String, Object> cmap) {
+		this.customerDao.updateCustomerInfo(cmap);
+		
+		return "customer_modify_ok";
 	}
 
 }

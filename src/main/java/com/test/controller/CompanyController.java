@@ -1,5 +1,8 @@
 package com.test.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +13,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.test.dao.CompanyDAO;
 import com.test.dto.CompanyDTO;
+import com.test.dto.CustomerDTO;
+import com.test.dto.PetDTO;
 
 @Controller
-@SessionAttributes({"customer", "company"})
+@SessionAttributes({ "customer", "company" })
 public class CompanyController {
-	
+
 	@Autowired
 	private CompanyDAO companyDao;
-	
+
 	@RequestMapping("/companyprofile")
 	public String profile(Model model, HttpSession session) {
-		if(session.getAttribute("company") != null) {
+		if (session.getAttribute("company") != null) {
 			try {
 				CompanyDTO company = (CompanyDTO) session.getAttribute("company"); // Get the Company Session
 				System.out.println("company => " + company.getCompany_Index());
@@ -35,13 +40,52 @@ public class CompanyController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else {
+		} else {
 			// false // Exception Handling
 		}
-		
-		return "companyprofile"; // companyprofile.jsp // views �뤃�뜑 �궡
+
+		return "companyprofile"; // companyprofile.jsp // views
 	}
 	
+	
+	// ===> 여기 고치면 좋을 듯~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	@RequestMapping("/beautyCompany")
+	public String beautyCompany(Model model, HttpServletRequest request) {
+		String url = "";
+		HttpSession session = request.getSession();
+		List<CompanyDTO> beautyCompanyList = this.companyDao.listsCompany("미용실");
+		model.addAttribute("companyList", beautyCompanyList);
+		url = "beauty_company";
+		return url;
+	}
+
+	@RequestMapping("/hospitalCompany")
+	public String hospitalCompany(Model model, HttpServletRequest request) {
+		String url = "";
+		HttpSession session = request.getSession();
+		List<CompanyDTO> hospitalCompanyList = this.companyDao.listsCompany("병원");
+		model.addAttribute("companyList", hospitalCompanyList);
+		url = "hospital_company";
+		return url;
+	}
+
+	@RequestMapping("/hotelCompany")
+	public String hotelCompany(Model model, HttpServletRequest request) {
+		String url = "";
+		HttpSession session = request.getSession();
+		List<CompanyDTO> hotelCompanyList = this.companyDao.listsCompany("호텔");
+		model.addAttribute("companyList", hotelCompanyList);
+		url = "hotel_company";
+		return url;
+	}
+	
+	@RequestMapping("/company_view")
+	public String companyView(Model model, int companyIdx) {
+		CompanyDTO company = this.companyDao.listThisCompany(companyIdx);
+		model.addAttribute("thisCompany", company);
+		return "company_view";
+	}
+
 //	@RequestMapping(value="/signupDo", method=RequestMethod.POST, headers=("content-type=multipart/*"))
 //	public String signupDo(MultipartHttpServletRequest multipartHttpServletRequest, @RequestParam HashMap<String, Object> cmap) {
 //		// �빐�떦 �씠誘몄��뒗, form�뿉�꽌 imageFile�씠�씪�뒗 name�쑝濡� 吏��젙�릺�뿀�쑝誘�濡�, "imageFile"�씠�� Key濡� �빐�떦 FileMap�뿉 ���옣�맂�떎!
@@ -88,7 +132,7 @@ public class CompanyController {
 //		
 //		return "redirect:/"; // index.jsp // views �뤃�뜑 �궡
 //	}
-	
+
 //	@RequestMapping("/getImageFile")
 //	public ResponseEntity<byte[]> getImageFile(Model model, HttpSession session) {
 //		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
@@ -106,5 +150,5 @@ public class CompanyController {
 //		return new ResponseEntity<byte[]>(imageFile, headers, HttpStatus.OK);
 //		// no jsp // img �깭洹몄쓽 src �냽�꽦媛믪쑝濡� �솢�슜
 //	}
-	
+
 }

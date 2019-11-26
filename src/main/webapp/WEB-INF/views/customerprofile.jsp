@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!doctype html>
 <html lang="en">
 
@@ -80,7 +81,7 @@
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Q&A</a></li>
-					<li class="nav-item"><a class="nav-link" href="login.html">Login</a>
+					<li class="nav-item"><a class="nav-link" href="loginOrProfile">Login</a>
 					</li>
 
 				</ul>
@@ -101,43 +102,40 @@
 			<div class="mx-auto main-block   col-12">
 
 				<!-- <img id="Customer_Image" src="./images/profile.png" width="100" height="100"> -->
-
-
-
-
+				
 				<table class="mypage-table" align="center" height="40" width="430"
 					border="0">
 					<tr>
-						<td><img id="Customer_Image" src="./images/profile.png"
-							width="150" height="150"></td>
+						<td><img id="Customer_Image"
+							src="<c:url value='/resources/images/logo.png' />" width="150"
+							height="150"></td>
 					</tr>
 				</table>
 				<table class="mypage-table" align="center" height="40" width="430"
 					border="0">
 					<tr>
-						<td><label class="mypage-user-id" id="Customer_Id">아이디</td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="펫등록하기" onclick="location.href='pet_register.html'"></td>
-
+						<td><label class="mypage-user-id" id="customer_Name">${ customer.customer_Name }</label></td>
 					</tr>
 				</table>
 				<table class="mypage-table" align="center" height="40" width="430"
 					border="0">
 					<tr>
 						<td><input type="button" class="mypage-btn-group"
-							value="정보수정하기" onclick="location.href='customer_revise.html'"></td>
+							value="펫등록하기" onclick="location.href='pet_register'"></td>
 					</tr>
 				</table>
 				<table class="mypage-table" align="center" height="40" width="430"
 					border="0">
 					<tr>
 						<td><input type="button" class="mypage-btn-group"
-							value="예약조회하기" onclick="location.href='reserve_check.html'"></td>
+							value="정보수정하기" onclick="location.href='customer_modify'"></td>
+					</tr>
+				</table>
+				<table class="mypage-table" align="center" height="40" width="430"
+					border="0">
+					<tr>
+						<td><input type="button" class="mypage-btn-group"
+							value="예약조회하기" onclick="location.href='customer_reserve_check'"></td>
 					</tr>
 				</table>
 
@@ -151,14 +149,13 @@
 							<tr>
 								<th>고객 번호</th>
 								<th>고객 아이디</th>
-								<th>고객 비밀번호</th>
 								<th>고객 이름</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>${ customer.customer_Index }</td>
-								<td>${ customer.customer_Password }</td>
+								<td>${ customer.customer_Id}</td>
 								<td>${ customer.customer_Name }</td>
 							</tr>
 							<!-- session에 저장된 customer -->
@@ -174,15 +171,25 @@
 							<tr>
 								<th>펫 번호</th>
 								<th>펫 이름</th>
-								<th>펫 종류</th>
+								<th>펫 종</th>
+								<th>나이</th>
+								<th>성별</th>
+								<th>중성화수술여부</th>
+								<th>무게</th>
+								<th>펫 히스토리</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${ pets }" var="pet">
+							<c:forEach items="${ pet }" var="pet">
 								<tr>
 									<td>${ pet.pet_Index }</td>
 									<td>${ pet.pet_Name }</td>
 									<td>${ pet.pet_Type }</td>
+									<td>${ pet.pet_Age }</td>
+									<td>${ pet.pet_Gender }</td>
+									<td>${ pet.pet_IsNeutralized }</td>
+									<td>${ pet.pet_Weight }</td>
+									<td>${ pet.pet_History }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -192,18 +199,22 @@
 				</div>
 
 				<hr />
-
-				<div class="logoutButton">
-					<button onclick="logout();">로그아웃</button>
-				</div>
+				<table class="mypage-table" align="center" height="40" width="430"
+					border="0">
+					<tr>
+						<td><input type="button" class="mypage-btn-group"
+							value="로그아웃" onclick="logout();"></td>
+					</tr>
+				</table>
+				<table class="mypage-table" align="center" height="40" width="430"
+					border="0">
+					<tr>
+						<td><input type="button" class="mypage-btn-group" value="회원탈퇴"
+							onclick="deleteTheCustomer();"></td>
+					</tr>
+				</table>
 
 				<hr />
-
-				<div class="deleteCustomerButton">
-					<button onclick="deleteTheCustomer();">회원 탈퇴</button>
-				</div>
-
-
 
 			</div>
 		</div>

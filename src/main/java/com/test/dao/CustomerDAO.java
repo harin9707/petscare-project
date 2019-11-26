@@ -11,5 +11,7 @@ public interface CustomerDAO {
 	abstract public int insertTheCustomer(HashMap<String, Object> cmap);
 	
 	abstract public int deleteTheCustomer(int customer_Index) ;
+
+	abstract public int updateCustomerInfo(HashMap<String, Object> cmap);
 	
 }

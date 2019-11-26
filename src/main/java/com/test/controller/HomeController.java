@@ -37,7 +37,12 @@ public class HomeController {
 			url = "/";
 		}else {
 			// eCompany, eCustomer
-			url = "profile";
+			if(Constant.eSession == ESession.eCustomer){
+				url = "customerprofile";
+				System.out.println("url"+url);
+			}else if(Constant.eSession == ESession.eCompany) {
+				url = "companyprofile";
+			}
 		}
 		return "redirect:" + url;
 		// profile.jsp OR login.jsp

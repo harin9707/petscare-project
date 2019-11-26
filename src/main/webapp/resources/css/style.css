@@ -38,7 +38,7 @@
 .menu_form_btn:hover{
     background: #ffffff;
     color: #52432b;
-    
+
 }
 
 
@@ -50,7 +50,6 @@
 .main-block{
     border:medium solid #a0855b;
     border-radius: 20px;
-    text-align: center;
     text-align: center;
 }
 
@@ -80,6 +79,7 @@
     color:#000000;
 
 }
+
 /* index */
 
 

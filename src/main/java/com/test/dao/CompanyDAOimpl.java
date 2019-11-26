@@ -7,22 +7,21 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.test.dto.CompanyDTO;
 
 @Repository
 public class CompanyDAOimpl implements CompanyDAO {
-	// @Repository //
+	// @Repository // DAO �겢�옒�뒪�뿉 �븘�닔�쟻�씤 �뼱�끂�뀒�씠�뀡, 洹몃옒�빞 �씤�떇 媛��뒫!
 	
 	@Autowired // root-context.xml 李멸퀬
 	private SqlSessionTemplate sqlSession;
 	
-
 	@Override
 	public List<CompanyDTO> listAllCompany() {
 		return this.sqlSession.selectList("listAllCompany");
 	}
-	
 	
 	@Override
 	public CompanyDTO listThisCompany(String company_Id, String company_Password) {
@@ -31,6 +30,12 @@ public class CompanyDAOimpl implements CompanyDAO {
 		company.put("company_Id", company_Id);
 		company.put("company_Password", company_Password);
 		return this.sqlSession.selectOne("listThisCompany", company);
+	}
+	
+	@Override
+	public CompanyDTO listThisCompany(int company_Index) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("listThisCompanyByIdx", company_Index);
 	}
 	
 	@Override
@@ -51,4 +56,10 @@ public class CompanyDAOimpl implements CompanyDAO {
 		return this.sqlSession.delete("deleteTheCompany", company_Index);
 	}
 
+	@Override
+	public List<CompanyDTO> listsCompany(String companyType) {
+		return this.sqlSession.selectList("listsCompany", companyType);
+
+	}
+	
 }

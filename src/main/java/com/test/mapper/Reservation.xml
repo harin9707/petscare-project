@@ -13,7 +13,7 @@
 		and
 		pet_Name = #{pet_Name}
 	</select>
-	<select id="listItsReservations"
+	<select id="listItsCustReservations"
 		parameterType="java.lang.Integer"
 		resultType="com.test.dto.ReservationDTO">
 		select
@@ -61,6 +61,17 @@
 		#{reservation_Time},
 		#{reservation_DetailService})
 	</insert>
+	
+	<select id="getCompanyIndex"
+		parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		
+		select company_Index
+		from reservation
+		where reservation_Index = #{reservation_Index}
+	</select>
+	
+	
 	
 	<delete id="deleteTheReservation">
 		delete from Reservation where reservation_Index = #{

@@ -21,9 +21,9 @@ public class ReservationDAOimpl implements ReservationDAO {
 
 
 	@Override
-	public List<ReservationDTO> listItsReservations(int pet_Index) {
+	public List<ReservationDTO> listItsCustReservations(int pet_Index) {
 		// TODO Auto-generated method stub
-		return this.sqlSession.selectList("listItsReservations", pet_Index);
+		return this.sqlSession.selectList("listItsCustReservations", pet_Index);
 	}
 
 	@Override
@@ -44,7 +44,6 @@ public class ReservationDAOimpl implements ReservationDAO {
 		}
 		//----------------------------------------------------------
 		
-		
 		System.out.println(rmap.get("pet_Index"));
 		System.out.println(rmap.get("company_Index"));
 		System.out.println(reservation_Date);
@@ -58,7 +57,13 @@ public class ReservationDAOimpl implements ReservationDAO {
 		rmap.put("reservation_DetailService",rmap.get("reservation_DetailService"));
 		
 		return this.sqlSession.insert("insertTheReservation", rmap);
+	}	
+
+	@Override
+	public int selectCompanyIndex(int reservation_Index) {
+		return this.sqlSession.selectOne("getCompanyIndex", reservation_Index);
 	}
+
 	
 	@Override
 	public int deleteTheReservation(int reservation_Index) {

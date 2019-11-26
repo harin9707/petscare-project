@@ -39,7 +39,6 @@ public class PetController {
 	@RequestMapping("/pet_register")
 	public String petRegister(Model model, HttpServletRequest request) {
 		String url = "";
-
 		HttpSession session = request.getSession();
 		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
 		if (customer != null) {
@@ -68,12 +67,10 @@ public class PetController {
 		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
 		int customer_Index = customer.getCustomer_Index();
 		List<PetDTO> itsPets = new ArrayList<PetDTO>();
-//		for (CustomerDTO customerDTO : itsCustoemers) {
 		List<PetDTO> temp = this.petDao.listItsPets(customer_Index);
 		itsPets.addAll(temp);
 		model.addAttribute("pet", itsPets);
-//		}
-		return "pet_check"; // login.jsp // views ?�뜝�룞�삕?�뜝�룞�삕 ?�뜝�룞�삕
+		return "pet_check"; 
 	}
 
 	public int petRegister(HashMap<String, Object> pmap) {

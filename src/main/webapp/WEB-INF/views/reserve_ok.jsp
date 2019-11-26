@@ -38,7 +38,7 @@
                         <a class="nav-link" href="#">소개</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="reserve.html">예약하기</a>
+                        <a class="nav-link active" href="reserve">예약하기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">제휴문의</a>
@@ -53,7 +53,7 @@
                         <a class="nav-link" href="#">Q&A</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="loginOrProfile">Login</a>
                     </li>
 
                 </ul>
