@@ -66,9 +66,7 @@ public class PetController {
 	
 	public String postModify(PetDTO pet){
 		this.petDao.update(pet);
-		
-		
-		return "redirect:/";
+		return "redirect:/customerprofile";
 		
 	}
 	

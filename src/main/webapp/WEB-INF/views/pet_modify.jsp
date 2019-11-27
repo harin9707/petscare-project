@@ -71,6 +71,8 @@
 		<div class="row mx-auto main-container">
 			<div class="mx-auto main-block   col-12">
 				<h1 class="pet_modify_title">펫 정보 수정하기</h1>
+				
+				
 				<form class="pet_modify" name="modify" method="post">
 					<div class="form-group row">
 						<label class="col-sm-2 " for="pet_Name">이름</label>
@@ -89,8 +91,10 @@
 					<div class="form-group row">
 						<label class=" col-sm-2 col-form-label" for="pet_Gender">성별</label>
 						<div class="gender-radio-group col-sm-8">
-							<input type="radio" name="pet_Gender" value="암컷">암컷 
-							<input type="radio" name="pet_Gender" value="수컷">수컷
+							<input type="radio" name="pet_Gender" value="암컷" 
+							<c:if test="${pet.pet_Gender eq '암컷'}">checked="checked"</c:if>>암컷					
+							<input type="radio" name="pet_Gender" value="수컷"
+							<c:if test="${pet.pet_Gender eq '수컷'}">checked="checked"</c:if>>수컷
 						</div>
 					</div>
 					<div class="form-group row">
@@ -103,8 +107,10 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="pet_IsNeutralized">중성화수술</label>
 						<div class="col-sm-8" id="pet_IsNeutralized">
-							<input type="radio" name="pet_IsNeutralized" value="1" > O 
-							<input type="radio" name="pet_IsNeutralized" value="0"> X
+							<input type="radio" name="pet_IsNeutralized" value="1" 
+							<c:if test="${pet.pet_IsNeutralized eq '1'}">checked="checked"</c:if>> O 
+							<input type="radio" name="pet_IsNeutralized" value="0" 
+							<c:if test="${pet.pet_IsNeutralized eq '0'}">checked="checked"</c:if>> X
 						</div>
 					</div>
 					<div class="form-group row">
