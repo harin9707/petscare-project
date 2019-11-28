@@ -12,6 +12,6 @@ public interface CustomerDAO {
 	
 	abstract public int deleteTheCustomer(int customer_Index) ;
 
-	abstract public int update(CustomerDTO cust);
+	abstract public int updateTheCustomer(CustomerDTO cust);
 	
 }

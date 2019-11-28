@@ -43,7 +43,7 @@ public class CustomerDAOimpl implements CustomerDAO {
 	}
 
 	@Override
-	public int update(CustomerDTO customer) {
+	public int updateTheCustomer(CustomerDTO customer) {
 		return this.sqlSession.update("updateTheCustomer", customer);
 		
 	}

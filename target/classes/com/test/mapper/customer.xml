@@ -38,9 +38,14 @@
 	
 	
 	<update id="updateTheCustomer">
-		update Customer set customer_Name =#{customer_Name}, customer_Password=#{customer_Password},
-		customer_Name=#{customer_Name}, customer_ResidentNumber=#{customer_ResidentNumber}, customer_PhoneNumber=#{customer_PhoneNumber},
-		customer_Address=#{customer_Address},customer_Email=#{customer_Email},customer_Image=#{customer_Image}
+		update Customer set customer_ID =#{customer_ID}, 
+		customer_Password=#{customer_Password},
+		customer_Name=#{customer_Name}, 
+		customer_ResidentNumber=#{customer_ResidentNumber}, 
+		customer_PhoneNumber=#{customer_PhoneNumber},
+		customer_Address=#{customer_Address},
+		customer_Email=#{customer_Email},
+		customer_Image=#{customer_Image}
 		where customer_Index=#{customer_Index} 
 	</update>
 
