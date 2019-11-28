@@ -75,7 +75,7 @@
                 </tr>
             </table>
 
-            <form class="w-50 ml-auto mr-auto mt-5 mb-5" action="customer_remodify" method="post">
+            <form class="w-50 ml-auto mr-auto mt-5 mb-5" action="customer_modify" method="post">
                 <div class="mb-5">
                     <img id="img-default" src="<c:url value='/resources/images/profile.png' />" width="100" height="100">
                     <input type="file" id="Customer_Image" name="Customer_Image" accept="image/*"
