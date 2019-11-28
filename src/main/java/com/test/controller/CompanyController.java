@@ -44,15 +44,17 @@ public class CompanyController {
 			// false // Exception Handling
 		}
 
-		return "companyprofile"; // companyprofile.jsp // views �뤃�뜑 �궡
+		return "companyprofile"; // companyprofile.jsp // views
 	}
-
+	
+	
+	// ===> 여기 고치면 좋을 듯~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	@RequestMapping("/beautyCompany")
 	public String beautyCompany(Model model, HttpServletRequest request) {
 		String url = "";
 		HttpSession session = request.getSession();
-		List<CompanyDTO> beautyCompany = this.companyDao.listsCompany("미용실");
-		model.addAttribute("company", beautyCompany);
+		List<CompanyDTO> beautyCompanyList = this.companyDao.listsCompany("미용실");
+		model.addAttribute("companyList", beautyCompanyList);
 		url = "beauty_company";
 		return url;
 	}
@@ -61,8 +63,8 @@ public class CompanyController {
 	public String hospitalCompany(Model model, HttpServletRequest request) {
 		String url = "";
 		HttpSession session = request.getSession();
-		List<CompanyDTO> hospitalCompany = this.companyDao.listsCompany("병원");
-		model.addAttribute("company", hospitalCompany);
+		List<CompanyDTO> hospitalCompanyList = this.companyDao.listsCompany("병원");
+		model.addAttribute("companyList", hospitalCompanyList);
 		url = "hospital_company";
 		return url;
 	}
@@ -71,20 +73,20 @@ public class CompanyController {
 	public String hotelCompany(Model model, HttpServletRequest request) {
 		String url = "";
 		HttpSession session = request.getSession();
-		List<CompanyDTO> hotelCompany = this.companyDao.listsCompany("호텔");
-		model.addAttribute("company", hotelCompany);
+		List<CompanyDTO> hotelCompanyList = this.companyDao.listsCompany("호텔");
+		model.addAttribute("companyList", hotelCompanyList);
 		url = "hotel_company";
 		return url;
 	}
-//	@RequestMapping("/beautyCompanyView")
-//	public String beautyCompanyView(Model model, HttpServletRequest request) {
-//		String url = "";
-//		HttpSession session = request.getSession();
-//		List<CompanyDTO> company =  (List<CompanyDTO>) session.getAttribute("company");
-//		url = "beauty_company_view";
-//		return url;
-//	}
+	
+	@RequestMapping("/company_view")
+	public String companyView(Model model, int companyIdx) {
+		CompanyDTO company = this.companyDao.listThisCompany(companyIdx);
+		model.addAttribute("thisCompany", company);
+		return "company_view";
+	}
 
+	
 //	@RequestMapping(value="/signupDo", method=RequestMethod.POST, headers=("content-type=multipart/*"))
 //	public String signupDo(MultipartHttpServletRequest multipartHttpServletRequest, @RequestParam HashMap<String, Object> cmap) {
 //		// �빐�떦 �씠誘몄��뒗, form�뿉�꽌 imageFile�씠�씪�뒗 name�쑝濡� 吏��젙�릺�뿀�쑝誘�濡�, "imageFile"�씠�� Key濡� �빐�떦 FileMap�뿉 ���옣�맂�떎!

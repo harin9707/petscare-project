@@ -80,8 +80,8 @@
 								<th>주소</th>
 							</tr>
 						</thead>
-						<c:forEach items="${ company }" var="company">
-							<tr onclick="location.href=#">
+						<c:forEach items="${ companyList }" var="company">
+							<tr onclick="location.href='company_view?companyIdx=${company.company_Index}'">
 								<td>${company.company_Name }</td>
 								<td>${company.company_UserName}</td>
 								<td>${company.company_UserPhoneNumber}</td>

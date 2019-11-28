@@ -16,7 +16,7 @@ public class CompanyDTO {
 	private String company_Id;
 	private String company_Password;
 	private String company_UserName;
-	private String company_RegidentNumber;
+	private String company_ResidentNumber;
 	private String company_Address;
 	private String company_Email;
 	private String company_UserPhoneNumber;
@@ -57,12 +57,12 @@ public class CompanyDTO {
 		this.company_UserName = company_UserName;
 	}
 
-	public String getCompany_RegidentNumber() {
-		return company_RegidentNumber;
+	public String getCompany_ResidentNumber() {
+		return company_ResidentNumber;
 	}
 
-	public void setCompany_RegidentNumber(String company_RegidentNumber) {
-		this.company_RegidentNumber = company_RegidentNumber;
+	public void setCompany_ResidentNumber(String company_ResidentNumber) {
+		this.company_ResidentNumber = company_ResidentNumber;
 	}
 
 	public String getCompany_Address() {

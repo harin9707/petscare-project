@@ -33,6 +33,12 @@ public class CompanyDAOimpl implements CompanyDAO {
 	}
 	
 	@Override
+	public CompanyDTO listThisCompany(int company_Index) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("listThisCompanyByIdx", company_Index);
+	}
+	
+	@Override
 	public int insertTheCompany(HashMap<String, Object> cmap) {
 		// TODO Auto-generated method stub
 		
@@ -55,5 +61,4 @@ public class CompanyDAOimpl implements CompanyDAO {
 		return this.sqlSession.selectList("listsCompany", companyType);
 
 	}
-	
 }

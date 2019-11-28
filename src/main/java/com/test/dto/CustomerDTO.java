@@ -15,8 +15,7 @@ public class CustomerDTO {
 	private String customer_Id;
 	private String customer_Password;
 	private String customer_Name;
-	private String customer_BirthDate;
-	private String customer_RegidentNumber;
+	private String customer_ResidentNumber;
 	private String customer_PhoneNumber;
 	private String customer_Address;
 	private String customer_Email;
@@ -54,20 +53,12 @@ public class CustomerDTO {
 		this.customer_Name = customer_Name;
 	}
 
-	public String getCustomer_BirthDate() {
-		return customer_BirthDate;
+	public String getCustomer_ResidentNumber() {
+		return customer_ResidentNumber;
 	}
 
-	public void setCustomer_BirthDate(String customer_BirthDate) {
-		this.customer_BirthDate = customer_BirthDate;
-	}
-
-	public String getCustomer_RegidentNumber() {
-		return customer_RegidentNumber;
-	}
-
-	public void setCustomer_RegidentNumber(String customer_RegidentNumber) {
-		this.customer_RegidentNumber = customer_RegidentNumber;
+	public void setCustomer_ResidentNumber(String customer_ResidentNumber) {
+		this.customer_ResidentNumber = customer_ResidentNumber;
 	}
 
 	public String getCustomer_PhoneNumber() {
