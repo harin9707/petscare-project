@@ -61,5 +61,4 @@ public class CompanyDAOimpl implements CompanyDAO {
 		return this.sqlSession.selectList("listsCompany", companyType);
 
 	}
-	
 }

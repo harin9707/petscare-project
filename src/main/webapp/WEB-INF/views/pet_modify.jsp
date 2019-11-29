@@ -21,42 +21,13 @@
 
 <title>반려동물 예약</title>
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 
-<script type="text/javascript">
-	$(function() {
-		$("#Customer_Image").on('change', function() {
-			readURL(this);
-		});
-	});
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				$('#img-defult').attr('src', e.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	function logout() {
-		location.href = "logout";
-	}
-
-	function deleteTheCustomer() {
-		location.href = "deleteTheCompany"; // 세션에서 customerIdx 받아오기!
-	}
-</script>
 </head>
 
 <body>
 	<header>
 		<nav class="menu navbar navbar-expand-lg navbar-light" id="top">
-			<a class="navbar-brand" href="index.html"> <img
+			<a class="navbar-brand" href="index.jsp"> <img
 				src="<c:url value='/resources/images/logo.png' />" width="70"
 				height="50" alt="logo">PET
 			</a>
@@ -99,95 +70,70 @@
 	<main class="container-fluid">
 		<div class="row mx-auto main-container">
 			<div class="mx-auto main-block   col-12">
-
-
-
-				<table class="mypage-table mt-5" align="center" height="40"
-					width="430" border="0">
-					<tr>
-						<td><img id="Customer_Image"
-							src="<c:url value='/resources/images/logo.png' />" width="150"
-							height="150"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><label class="mypage-user-id" id="company_Name">${ company.company_Name }</td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="정보수정하기" onclick="location.href='company_revise.html'"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="예약조회하기"
-							onclick="location.href='company_reserve_check'"></td>
-					</tr>
-				</table>
-
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="후기조회하기" onclick="location.href='company_review_list'"></td>
-					</tr>
-				</table>
-
-				<hr />
-
-				<div class="main">
-
-					<table>
-						<caption></caption>
-						<thead>
-							<tr>
-								<th>회사 사업자 번호</th>
-								<th>회사 아이디</th>
-								<th>회사 비밀번호</th>
-								<th>회사 이름</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>${ company.company_Index }</td>
-								<td>${ company.company_Id }</td>
-								<td>${ company.company_Password }</td>
-								<td>${ company.company_UserName }</td>
-							</tr>
-							<!-- session에 저장된 customer -->
-						</tbody>
-						<tfoot></tfoot>
-					</table>
-
-					<hr />
-
-					<table class="mypage-table" align="center" height="40" width="430"
-						border="0">
-						<tr>
-							<td><input type="button" class="mypage-btn-group"
-								value="로그아웃" onclick="logout();"></td>
-						</tr>
-					</table>
-					<table class="mypage-table" align="center" height="40" width="430"
-						border="0">
-						<tr>
-							<td><input type="button" class="mypage-btn-group"
-								value="회원탈퇴" onclick="deleteTheCustomer();"></td>
-						</tr>
-					</table>
-
-				</div>
+				<h1 class="pet_modify_title">펫 정보 수정하기</h1>
+				
+				
+				<form class="pet_modify" name="modify" method="post">
+					<div class="form-group row">
+						<label class="col-sm-2 " for="pet_Name">이름</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_Name"
+								name="pet_Name" value="${pet.pet_Name }">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_Type">종</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_Type"
+								name="pet_Type" value="${pet.pet_Type }">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class=" col-sm-2 col-form-label" for="pet_Gender">성별</label>
+						<div class="gender-radio-group col-sm-8">
+							<input type="radio" name="pet_Gender" value="암컷" 
+							<c:if test="${pet.pet_Gender eq '암컷'}">checked="checked"</c:if>>암컷					
+							<input type="radio" name="pet_Gender" value="수컷"
+							<c:if test="${pet.pet_Gender eq '수컷'}">checked="checked"</c:if>>수컷
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_Age">나이(개월수)</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="number" id="pet_Age"
+								name="pet_Age" value="${pet.pet_Age }">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_IsNeutralized">중성화수술</label>
+						<div class="col-sm-8" id="pet_IsNeutralized">
+							<input type="radio" name="pet_IsNeutralized" value="1" 
+							<c:if test="${pet.pet_IsNeutralized eq '1'}">checked="checked"</c:if>> O 
+							<input type="radio" name="pet_IsNeutralized" value="0" 
+							<c:if test="${pet.pet_IsNeutralized eq '0'}">checked="checked"</c:if>> X
+						</div>
+					</div>
+					<div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="pet_Weight">무게</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="pet_Weight" placeholder="kg"
+                                name="pet_Weight" value="${pet.pet_Weight}">
+                        </div>
+                    </div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="pet_History">기타사항</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" id="pet_History"
+								name="pet_History" value="${pet.pet_History }">
+						</div>
+					</div>
+					<div class="register-btn-div row">
+						<button type="submit" class="register-btn">수정</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</main>
-
 	<footer class="container-fluid">
 		<div class="row footer-container">
 			<div class="col-12">

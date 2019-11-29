@@ -86,6 +86,7 @@ public class CompanyController {
 		return "company_view";
 	}
 
+	
 //	@RequestMapping(value="/signupDo", method=RequestMethod.POST, headers=("content-type=multipart/*"))
 //	public String signupDo(MultipartHttpServletRequest multipartHttpServletRequest, @RequestParam HashMap<String, Object> cmap) {
 //		// �빐�떦 �씠誘몄��뒗, form�뿉�꽌 imageFile�씠�씪�뒗 name�쑝濡� 吏��젙�릺�뿀�쑝誘�濡�, "imageFile"�씠�� Key濡� �빐�떦 FileMap�뿉 ���옣�맂�떎!

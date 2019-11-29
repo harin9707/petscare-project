@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 
+<!doctype html>
+<html lang="en">
+
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -16,11 +19,49 @@
 	crossorigin="anonymous">
 
 <!-- css -->
-<link rel="stylesheet" href="<c:url value='/resources/css/style.css' />" />
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css' />"
+	type="text/css" />
+<style type="text/css">
+.rate {
+	float: left;
+	height: 46px;
+	padding: 0 10px;
+}
 
+.rate:not (:checked )>input {
+	position: absolute;
+	top: -9999px;
+}
 
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+.rate:not (:checked )>label {
+	float: right;
+	width: 1em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 30px;
+	color: #ccc;
+}
 
+.rate:not (:checked )>label:before {
+	content: '★ ';
+}
+
+.rate>input:checked ~label {
+	color: #ffc700;
+}
+
+.rate:not (:checked )>label:hover, .rate:not (:checked )>label:hover
+	~label {
+	color: #deb217;
+}
+
+.rate>input:checked+label:hover, .rate>input:checked+label:hover ~label,
+	.rate>input:checked ~label:hover, .rate>input:checked ~label:hover
+	~label, .rate>label:hover ~input:checked ~label {
+	color: #c59b08;
+}
+</style>
 
 <title>반려동물 예약</title>
 </head>
@@ -40,14 +81,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">홈
-							<span class="sr-only">(current)</span>
-					</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="index.html">홈 <span class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="reserve.html">예약하기</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="search.html">업체찾기</a>
-					</li>
+					<li class="nav-item active"><a class="nav-link"
+						href="reserve.html">예약하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">제휴문의</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
@@ -68,63 +106,63 @@
 			</div>
 		</nav>
 	</header>
+
+
+
 	<main class="container-fluid">
-		<div class="row mx-auto main-container">
-			<div class="mx-auto main-block   col-12">
-				<section>
-					<h2 class="reserve-check-title">예약조회</h2>
+		<div class="row m-5">
+			<div class="col-12 main-block">
+				<h1 class="font-weight-bold p-5">Review</h1>
+				<hr>
+				<div class="review-left-div">
+					<label class="font-weight-bold" for="review_Title">제목 : </label> <label
+						id="review_Title" name="review_Title"> ${ review.review_Title }</label>
+				</div>
+				<div class="review-right-div">
+					<label class="font-weight-bold" for="customer_Name">작성자 : </label>
+					<label id="customer_Name" name="customer_Name"> 작성자(?)</label>
+				</div>
+				<div class="review-div">
+					<label class="font-weight-bold" for="review_Content">내용 : </label>
+				</div>
+				<div class="review-div-image">
+					<img src="./images/logo.png" id="review_Image" name="review_Image">
+				</div>
+				<div class="review-div">
+					<p id="review_Content" name="review_Content">
+						<label id="review_Content" name="review_Content"> ${ review.review_Content }</label>
+					</p>
+				</div>
+				<div class="review-div">
+					<label class="font-weight-bold" for="review_Rating">별점 : </label>
+					<label id="review_Rating" name="review_Rating">${ review.review_Rating }</label>
+					<hr>
+				</div>
 
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>예약번호</th>
-								<th>서비스 종류</th>
-								<th>이름</th>
-								<th>나이</th>
-								<th>중성화수술여부</th>
-								<th>성별</th>
-								<th>무게</th>
-								<th>종</th>
-								<th>예약날짜</th>
-								<th>시간</th>
-								<th>예약상태</th>
-								<th></th>
-							</tr>
-						</thead>
-						<c:forEach items="${ reservation }" var="reservation">
-
-							<form method="get" action="company_reservation_cancel">
-								<tr>
-									<td><input type="text"
-										class="border-0 bg-white font-weight-bold text-center"
-										name="index" placeholder=${ reservation.reservation_Index }
-										value=${ reservation.reservation_Index } readonly="readonly" /></td>
-									<td>${ reservation.company_Type }</td>
-									<td>${ reservation.pet_Name }</td>
-									<td>${ reservation.pet_Age }</td>
-									<td>${ reservation.pet_IsNeutralized }</td>
-									<td>${ reservation.pet_Gender }</td>
-									<td>${ reservation.pet_Weight }</td>
-									<td>${ reservation.pet_Type }</td>
-									<td>${ reservation.reservation_Date }</td>
-									<td>${ reservation.reservation_Time }</td>
-									<td>${ reservation.reservation_Check }</td>
-									<td><c:if
-											test="${reservation.reservation_Check eq 'reserved'}">
-											<input type="submit" class="btn btn-outline-danger"
-												value="취소">
-										</c:if></td>
-								</tr>
-							</form>
-						</c:forEach>
-					</table>
-
-				</section>
+				<form method="POST" action="company_review_ok?reviewIdx=${review.review_Index}" accept-charset="utf-8"
+					name="review-comment" class="review-comment ">
+					<div class="review-div">
+						<label class="font-weight-bold" for="review_Comment">답글</label> <br>
+						<textarea id="review_Comment" style="width: 90%;" rows="3"
+							name="review_Comment">${ review.review_Comment }</textarea>
+						<input type="submit">등록</input>
+					</div>
+				</form>
 
 
+				<div class="row">
+					<button onclick="location.href='review_list'"
+						class="btn btn-secondary btn-lg mx-auto">목록</button>
+				</div>
 			</div>
+
 		</div>
 	</main>
+
+
+
+
+
 	<footer class="container-fluid">
 		<div class="row footer-container">
 			<div class="col-12">
@@ -159,6 +197,16 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<script type="text/javascript">
+		var loadFile = function(event) {
+			var x = document.createElement('img'), y = document.getElementById(
+					"images").appendChild(x);
+			console.log('d');
+			y.src = URL.createObjectURL(event.target.files[0]);
+			y.width = '100';
+			y.height = '100';
+		};
+	</script>
 </body>
 
 </html>

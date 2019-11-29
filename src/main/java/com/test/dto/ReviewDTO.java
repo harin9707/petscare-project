@@ -1,7 +1,14 @@
 package com.test.dto;
 
 public class ReviewDTO {
-	
+
+	/*
+	 * create table Review ( review_Index int not null auto_increment, company_Index
+	 * int not null, review_Title varchar(60) not null, review_Content text not
+	 * null, review_Rating varchar(15) not null, review_ViewsNumber int,
+	 * review_Image mediumblob, review_Comment text, ref int not null,
+	 * 
+	 */
 	private int review_Index;
 	private int company_Index;
 	private String review_Title;
@@ -10,7 +17,8 @@ public class ReviewDTO {
 	private int review_ViewsNumber;
 	private byte[] review_Image;
 	private String review_Comment;
-	private int ref;
+	private int review_Ref;
+	
 	public int getReview_Index() {
 		return review_Index;
 	}
@@ -59,10 +67,13 @@ public class ReviewDTO {
 	public void setReview_Comment(String review_Comment) {
 		this.review_Comment = review_Comment;
 	}
-	public int getRef() {
-		return ref;
+	public int getReivew_Ref() {
+		return review_Ref;
 	}
-	public void setRef(int ref) {
-		this.ref = ref;
+	public void setReivew_Ref(int review_Ref) {
+		this.review_Ref = review_Ref;
 	}
+	
+
+	
 }

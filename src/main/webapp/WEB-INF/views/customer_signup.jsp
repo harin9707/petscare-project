@@ -13,7 +13,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- css -->
-    <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
 
     <title>반려동물 예약</title>
 </head>

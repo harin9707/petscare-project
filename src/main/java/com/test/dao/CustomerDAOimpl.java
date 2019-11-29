@@ -41,10 +41,8 @@ public class CustomerDAOimpl implements CustomerDAO {
 		
 		return this.sqlSession.delete("deleteTheCustomer", customer_Index);
 	}
-
 	@Override
 	public int updateCustomerInfo(HashMap<String, Object> cmap) {
 		return this.sqlSession.update("updateCustomerInfo", cmap);		
 	}
-	
 }

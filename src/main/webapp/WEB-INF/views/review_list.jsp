@@ -17,40 +17,51 @@
 	crossorigin="anonymous">
 
 <!-- css -->
-<link rel="stylesheet" href="<c:url value='/resources/css/style.css' />" />
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css' />"
+	type="text/css" />
+<style type="text/css">
+.rate {
+	float: left;
+	height: 46px;
+	padding: 0 10px;
+}
+
+.rate:not (:checked )>input {
+	position: absolute;
+	top: -9999px;
+}
+
+.rate:not (:checked )>label {
+	float: right;
+	width: 1em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 30px;
+	color: #ccc;
+}
+
+.rate:not (:checked )>label:before {
+	content: '★ ';
+}
+
+.rate>input:checked ~label {
+	color: #ffc700;
+}
+
+.rate:not (:checked )>label:hover, .rate:not (:checked )>label:hover
+	~label {
+	color: #deb217;
+}
+
+.rate>input:checked+label:hover, .rate>input:checked+label:hover ~label,
+	.rate>input:checked ~label:hover, .rate>input:checked ~label:hover
+	~label, .rate>label:hover ~input:checked ~label {
+	color: #c59b08;
+}
+</style>
 
 <title>반려동물 예약</title>
-
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-
-<script type="text/javascript">
-	$(function() {
-		$("#Customer_Image").on('change', function() {
-			readURL(this);
-		});
-	});
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				$('#img-defult').attr('src', e.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	function logout() {
-		location.href = "logout";
-	}
-
-	function deleteTheCustomer() {
-		location.href = "deleteTheCompany"; // 세션에서 customerIdx 받아오기!
-	}
-</script>
 </head>
 
 <body>
@@ -68,19 +79,16 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">홈
-							<span class="sr-only">(current)</span>
-					</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="index.html">홈 <span class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="reserve.html">예약하기</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="search.html">업체찾기</a>
-					</li>
+					<li class="nav-item active"><a class="nav-link"
+						href="reserve.html">예약하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">제휴문의</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Q&A</a></li>
-					<li class="nav-item"><a class="nav-link" href="loginOrProfile">Login</a>
+					<li class="nav-item"><a class="nav-link" href="login.html">Login</a>
 					</li>
 
 				</ul>
@@ -99,95 +107,31 @@
 	<main class="container-fluid">
 		<div class="row mx-auto main-container">
 			<div class="mx-auto main-block   col-12">
-
-
-
-				<table class="mypage-table mt-5" align="center" height="40"
-					width="430" border="0">
-					<tr>
-						<td><img id="Customer_Image"
-							src="<c:url value='/resources/images/logo.png' />" width="150"
-							height="150"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><label class="mypage-user-id" id="company_Name">${ company.company_Name }</td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="정보수정하기" onclick="location.href='company_revise.html'"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="예약조회하기"
-							onclick="location.href='company_reserve_check'"></td>
-					</tr>
-				</table>
-
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="후기조회하기" onclick="location.href='company_review_list'"></td>
-					</tr>
-				</table>
-
-				<hr />
-
-				<div class="main">
-
-					<table>
-						<caption></caption>
+				<h1 class="font-weight-bold p-5">Review</h1>
+				<hr>
+				<section>
+					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>회사 사업자 번호</th>
-								<th>회사 아이디</th>
-								<th>회사 비밀번호</th>
-								<th>회사 이름</th>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>${ company.company_Index }</td>
-								<td>${ company.company_Id }</td>
-								<td>${ company.company_Password }</td>
-								<td>${ company.company_UserName }</td>
-							</tr>
-							<!-- session에 저장된 customer -->
-						</tbody>
-						<tfoot></tfoot>
-					</table>
-
-					<hr />
-
-					<table class="mypage-table" align="center" height="40" width="430"
-						border="0">
-						<tr>
-							<td><input type="button" class="mypage-btn-group"
-								value="로그아웃" onclick="logout();"></td>
+						<c:forEach items="${ review }" var="review">
+						<tr onclick="location.href='customer_review_view?reviewIdx=${review.review_Index}'">
+							<td id="reivew_Index">${ review.review_Index }</td>
+							<td id="review_Title">${ review.review_Title }</td>
+							<td id="customer_Name">작성자(?)</td>
 						</tr>
+						</c:forEach>
 					</table>
-					<table class="mypage-table" align="center" height="40" width="430"
-						border="0">
-						<tr>
-							<td><input type="button" class="mypage-btn-group"
-								value="회원탈퇴" onclick="deleteTheCustomer();"></td>
-						</tr>
-					</table>
+				</section>
 
-				</div>
 			</div>
 		</div>
 	</main>
-
 	<footer class="container-fluid">
 		<div class="row footer-container">
 			<div class="col-12">
@@ -222,6 +166,16 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<script type="text/javascript">
+		var loadFile = function(event) {
+			var x = document.createElement('img'), y = document.getElementById(
+					"images").appendChild(x);
+			console.log('d');
+			y.src = URL.createObjectURL(event.target.files[0]);
+			y.width = '100';
+			y.height = '100';
+		};
+	</script>
 </body>
 
 </html>
