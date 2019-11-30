@@ -49,34 +49,33 @@
 		where
 		reservation.company_Index = #{ company_Index }
 	</select>
+	<select id="getCompanyIndex" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select company_Index
+		from reservation
+		where reservation_Index =
+		#{reservation_Index}
+	</select>
 
 
 	<insert id="insertTheReservation" parameterType="java.util.Map">
 		insert into
 		Reservation
 		(pet_Index, company_Index, reservation_Date,
-		reservation_Time, reservation_DetailService)
+		reservation_Time)
 		values(#{pet_Index}, #{company_Index},
 		#{reservation_Date},
-		#{reservation_Time},
-		#{reservation_DetailService})
+		#{reservation_Time})
 	</insert>
-	
-	<select id="getCompanyIndex"
-		parameterType="java.lang.Integer"
-		resultType="java.lang.Integer">
-		
-		select company_Index
-		from reservation
-		where reservation_Index = #{reservation_Index}
-	</select>
-	
-	
-	
 	<delete id="deleteTheReservation">
 		delete from Reservation where reservation_Index = #{
 		reservation_Index }
 	</delete>
+	<update id="cancelTheReservation">
+		update Reservation set
+		reservation_Check = 'canceled' where reservation_Index =
+		#{reservation_Index}
+	</update>
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 
 </mapper>
