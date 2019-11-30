@@ -119,51 +119,37 @@
 
 여진 */
 
-.login-table{
-    margin-left: auto;
-    margin-right: auto;
+/* login page */
+.logindiv{
+    margin: auto;
+   padding : 10px;
+ }
 
-}
 .login-title {
-
+    padding : 30px;
     color: #a0855b;
 
 }
 
-
-
-.login-table #userid{
+.logindiv #userid{
     border:solid 2px #fdeaab;
-   margin-top:4%;
-   height: 40px;
-   width: 430px;
-}
+    border-radius: 20px;
 
-.login-table #password{
+ 
+ }
+ .logindiv #password{
     border:solid 2px #fdeaab;
-    margin-top:1%;
-   height:40px;
-   width:430px;
-}
+    border-radius: 20px;
+ 
+ }
 
+.logindiv #btn-login{
+    background-color:#fdeaab;
+    color:white;
+    border:solid 1px #fdeaab;
+    font-size:16px;
+    border-radius: 20px;
 
-.login-table #btn-login{
-    margin-top:1%;
-   height:50px;
-   width:430px;
-   background-color:#fdeaab;
-   color:white;
-   font-size:16px;
-   border:solid 1px #fdeaab;
-}
-
-
-.link-table{
-   margin-top:1%;
-}
-
-.link-table a{
-    color:#52432b;
 }
 
 
@@ -180,7 +166,6 @@ pet_register */
     padding: 20px;
 }
 .register-btn {
-    width: 100px;
 
     border : 1px solid #a0855b;
      border-top-left-radius: 5px;
@@ -199,7 +184,9 @@ pet_register */
  .gender-radio-group{
     text-align: left;
  }
-
+.isNeutralized-radio-group{
+    text-align: left;
+ }
  /* user-re */
 .user-re-title{
     color:#52432b;

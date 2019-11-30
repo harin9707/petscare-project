@@ -95,7 +95,11 @@
 								<td>${ reservation.company_Type }</td>
 								<td>${ reservation.pet_Name }</td>
 								<td>${ reservation.pet_Age }</td>
-								<td>${ reservation.pet_IsNeutralized }</td>
+								<td><c:choose>
+								<c:when test="${reservation.pet_IsNeutralized eq 'false'}">x</c:when>
+								<c:when test="${reservation.pet_IsNeutralized eq 'true'}">o</c:when>
+								</c:choose>
+								</td>
 								<td>${ reservation.pet_Gender }</td>
 								<td>${ reservation.pet_Weight }</td>
 								<td>${ reservation.pet_Type }</td>

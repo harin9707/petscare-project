@@ -18,6 +18,7 @@
 
 <!-- css -->
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css' />" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 <title>반려동물 예약</title>
 
@@ -78,14 +79,14 @@
 						<label class="col-sm-2 " for="pet_Name">이름</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" id="pet_Name"
-								name="pet_Name" value="${pet.pet_Name }">
+								name="pet_Name" value="${pet.pet_Name }" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="pet_Type">종</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" id="pet_Type"
-								name="pet_Type" value="${pet.pet_Type }">
+								name="pet_Type" value="${pet.pet_Type }" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -101,23 +102,27 @@
 						<label class="col-sm-2 col-form-label" for="pet_Age">나이(개월수)</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="number" id="pet_Age"
-								name="pet_Age" value="${pet.pet_Age }">
+								name="pet_Age" value="${pet.pet_Age }" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="pet_IsNeutralized">중성화수술</label>
-						<div class="col-sm-8" id="pet_IsNeutralized">
+						<div class="isNeutralized-radio-group col-sm-8" id="pet_IsNeutralized">
 							<input type="radio" name="pet_IsNeutralized" value="1" 
-							<c:if test="${pet.pet_IsNeutralized eq '1'}">checked="checked"</c:if>> O 
+							<c:if test="${pet.pet_IsNeutralized eq '1'}">checked="checked"</c:if>> 
+							<i class="far fa-circle"></i>
+							
 							<input type="radio" name="pet_IsNeutralized" value="0" 
-							<c:if test="${pet.pet_IsNeutralized eq '0'}">checked="checked"</c:if>> X
+							<c:if test="${pet.pet_IsNeutralized eq '0'}">checked="checked"</c:if>> 
+							<i class="far fa-times-circle"></i>
+							
 						</div>
 					</div>
 					<div class="form-group row">
                         <label class="col-sm-2 col-form-label" for="pet_Weight">무게</label>
                         <div class="col-sm-8">
                             <input type="number" class="form-control" id="pet_Weight" placeholder="kg"
-                                name="pet_Weight" value="${pet.pet_Weight}">
+                                name="pet_Weight" value="${pet.pet_Weight}" required>
                         </div>
                     </div>
 					<div class="form-group row">
@@ -127,9 +132,7 @@
 								name="pet_History" value="${pet.pet_History }">
 						</div>
 					</div>
-					<div class="register-btn-div row">
-						<button type="submit" class="register-btn">수정</button>
-					</div>
+						<button type="submit" class="btn register-btn">수정하기</button>
 				</form>
 			</div>
 		</div>

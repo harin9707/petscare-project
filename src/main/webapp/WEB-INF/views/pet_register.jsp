@@ -19,6 +19,7 @@
 <!-- css -->
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css' />" />
 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>반려동물 예약</title>
 
 
@@ -90,8 +91,8 @@
 					<div class="form-group row">
 						<label class=" col-sm-2 col-form-label" for="pet_Gender">성별</label>
 						<div class="gender-radio-group col-sm-8">
-							<input type="radio" name="pet_Gender" value="암컷">암컷 <input
-								type="radio" name="pet_Gender" value="수컷">수컷
+							<input type="radio" name="pet_Gender" value="암컷" required>암컷 <input
+								type="radio" name="pet_Gender" value="수컷" required>수컷
 						</div>
 					</div>
 					<div class="form-group row">
@@ -103,9 +104,11 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="pet_IsNeutralized">중성화수술</label>
-						<div class="col-sm-8" id="pet_IsNeutralized">
-							<input type="radio" name="pet_IsNeutralized" value="1" checked="checked"> O 
-							<input type="radio" name="pet_IsNeutralized" value="0"> X
+						<div class="isNeutralized-radio-group col-sm-8" id="pet_IsNeutralized">
+							<input type="radio" name="pet_IsNeutralized" value="1" required>
+							<i class="far fa-circle"></i>
+							<input type="radio" name="pet_IsNeutralized" value="0" required> 
+							<i class="far fa-times-circle"></i>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -119,12 +122,12 @@
 						<label class="col-sm-2 col-form-label" for="pet_History">기타사항</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="text" id="pet_History"
-								name="pet_History" placeholder="없을 경우 '없음'">
+								name="pet_History">
 						</div>
 					</div>
-					<div class="register-btn-div row">
-						<button type="submit" class="register-btn">등록하기</button>
-					</div>
+				
+					  	<button type="submit" class="btn register-btn">제출</button>
+
 				</form>
 			</div>
 		</div>
