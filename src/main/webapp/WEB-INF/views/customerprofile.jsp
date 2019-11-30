@@ -131,7 +131,7 @@
 					border="0">
 					<tr>
 						<td><input type="button" class="mypage-btn-group"
-							value="정보수정하기" onclick="location.href='customer_revise.html'"></td>
+							value="정보수정하기" onclick="location.href='customer_modify'"></td>
 					</tr>
 				</table>
 				<table class="mypage-table" align="center" height="40" width="430"
@@ -185,7 +185,7 @@
 						<tbody>
 							<c:forEach items="${ pet }" var="pet">
 								<tr>
-									<td>${ pet.pet_Index }</td>
+									<td>${pet.pet_Index }</td>
 									<td>${ pet.pet_Name }</td>
 									<td>${ pet.pet_Type }</td>
 									<td>${ pet.pet_Age }</td>
@@ -193,6 +193,11 @@
 									<td>${ pet.pet_IsNeutralized }</td>
 									<td>${ pet.pet_Weight }</td>
 									<td>${ pet.pet_History }</td>
+								</tr>
+								<tr>
+									<td><input type="button" class="mypage-btn-group"
+										value="정보수정하기"
+										onclick="location.href='pet_modify?customer_Index=${customer.customer_Index }&pet_Index=${pet.pet_Index }'"></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -212,8 +217,8 @@
 				<table class="mypage-table" align="center" height="40" width="430"
 					border="0">
 					<tr>
-						<td><input type="button" class="mypage-btn-group" value="회원탈퇴"
-							onclick="deleteTheCustomer();"></td>
+						<td><input type="button" class="mypage-btn-group"
+							value="회원탈퇴" onclick="deleteTheCustomer();"></td>
 					</tr>
 				</table>
 

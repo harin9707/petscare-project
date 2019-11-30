@@ -25,7 +25,7 @@ import com.test.dto.ReservationDTO;
 
 @Controller
 @SessionAttributes({ "customer", "company" })
-public class ResevationController {
+public class ReservationController {
 
 	@Autowired
 	private CustomerDAO customerDao;
@@ -42,44 +42,44 @@ public class ResevationController {
 	@RequestMapping("/reserve")
 	public String reserve(Model model, HttpServletRequest request) {
 		String url = "";
-		
+
 		HttpSession session = request.getSession();
 		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
 		if (customer != null) {
-			//고객이 가지고 있는 펫 정보 다 가져오기
+			// 고객이 가지고 있는 펫 정보 다 가져오기
 			int customerIdx = customer.getCustomer_Index();
 			System.out.println("예약중인 고객 번호 : " + customerIdx);
-			
+
 			List<PetDTO> itsPets = this.petDao.listItsPets(customerIdx);
 			model.addAttribute("petList", itsPets);
-			//DB에 저장된 회사정보 가져오기
-			List<CompanyDTO> company = this.companyDao.listAllCompany();		
+			// DB에 저장된 회사정보 가져오기
+			List<CompanyDTO> company = this.companyDao.listAllCompany();
 			model.addAttribute("companyList", company);
-			
+
 			url = "reserve";
 		} else {
 			url = "redirect:/";
 		}
-		
+
 		return url;
 	}
-	
+
 	@RequestMapping("/reserve_ok")
 	public String reserve_Ok(@RequestParam HashMap<String, Object> rmap, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
 		System.out.println("예약완료지롱");
 		this.userReserve(rmap, customer);
-		return "reserve_ok"; 
+		return "reserve_ok";
 	}
-	
+
 	// 이것도 그냥 customer 인덱스만 넘기면 될 거 같긴 한데 ~~~~~~~~~~~~
 	public int userReserve(HashMap<String, Object> rmap, CustomerDTO customer) {
 		int res = this.reservationDAO.insertTheReservation(rmap, customer.getCustomer_Index());
 		System.out.println("reservation insert result => " + res);
 		return res;
 	}
-	
+
 	@RequestMapping("/customer_reserve_check")
 	public String customer_reservecheck(Model model, HttpSession session) {
 		if (session.getAttribute("customer") != null) {
@@ -98,7 +98,7 @@ public class ResevationController {
 		}
 		return "customer_reserve_check"; // login.jsp // views
 	}
-	
+
 	@RequestMapping("/company_reserve_check")
 	public String company_reservecheck(Model model, HttpSession session) {
 		if (session.getAttribute("company") != null) {
@@ -110,24 +110,22 @@ public class ResevationController {
 		return "company_reserve_check"; // login.jsp // views
 	}
 
-
 	@RequestMapping(value = "/customer_reservation_cancel", method = RequestMethod.GET)
-	public String customer_reservation_delete(Model model,HttpServletRequest httpServletRequest, HttpSession session) {
+	public String customer_reservation_delete(Model model, HttpSession session, String index) {
+		System.out.println(index);
+		int reservationNum = Integer.parseInt(index);
+		System.out.println("예약번호: " + reservationNum);
+		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
+		int customerIdx = customer.getCustomer_Index();
+		List<ReservationDTO> itsReservations = this.reservationDAO.listItsCustReservations(customerIdx);
 
-		int reservationNum = Integer.parseInt(httpServletRequest.getParameter("index"));
-		System.out.println("예약번호: "+ reservationNum);
-		
-			CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
-			int customerIdx = customer.getCustomer_Index();
-			List<ReservationDTO> itsReservations = this.reservationDAO.listItsCustReservations(customerIdx);
-			
-			for (ReservationDTO reservationDTO : itsReservations) {
-				if(reservationDTO.getReservation_Index() == reservationNum) {
-					reservationDAO.cancelTheReservation(reservationNum);
-				}
+		for (ReservationDTO reservationDTO : itsReservations) {
+			if (reservationDTO.getReservation_Index() == reservationNum) {
+				reservationDAO.cancelTheReservation(reservationNum);
 			}
-			System.out.println("예약취소되었습니다.");
+		}
+		System.out.println("예약취소되었습니다.");
 		return "customerprofile";
 	}
-	
+
 }

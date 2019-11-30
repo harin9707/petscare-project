@@ -2,6 +2,7 @@ package com.test.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,24 @@ public class PetDAOimpl implements PetDAO {
 
 	@Override
 	public int deleteThePet(int pet_Index) {
-		// TODO Auto-generated method stub
 		
 		return this.sqlSession.delete("deleteThePet", pet_Index);
+	}
+	
+	@Override
+	public PetDTO read(int customer_Index,int pet_Index) {
+		
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		
+		map.put("customer_Index", customer_Index);
+		map.put("pet_Index", pet_Index);
+		
+		return sqlSession.selectOne("readThePet",map);
+	}
+
+	@Override
+	public void update(PetDTO pet) {
+		sqlSession.update("updateThePet", pet);
 	}
 	
 }

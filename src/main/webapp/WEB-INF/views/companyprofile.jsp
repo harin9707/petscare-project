@@ -136,7 +136,7 @@
 					border="0">
 					<tr>
 						<td><input type="button" class="mypage-btn-group"
-							value="후기조회하기" onclick="location.href='review_list.html'"></td>
+							value="후기조회하기" onclick="location.href='company_review_list'"></td>
 					</tr>
 				</table>
 

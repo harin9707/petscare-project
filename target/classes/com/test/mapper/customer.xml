@@ -26,9 +26,26 @@
 		)
 	</insert>
 
+
+
 	<delete id="deleteTheCustomer">
 		delete from Customer where customer_Id = #{ customer_Id }
 	</delete>
+	
+	<insert id="updateCustomerInfo" parameterType="java.util.Map">
+		update Customer
+		set customer_Password = #{customer_Password},
+			customer_PhoneNumber = #{customer_PhoneNumber},
+			customer_Email = #{customer_Email},
+			customer_Address = #{customer_Address}
+		where customer_Id = #{customer_Id} and customer_Name = #{customer_Name}
+	</insert>
+	
+	
+	
+	
+	
+	
 
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 

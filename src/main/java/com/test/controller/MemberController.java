@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.test.constants.Constant;
 import com.test.constants.Constant.ESession;
@@ -46,23 +47,23 @@ public class MemberController {
 		CustomerDTO customer = this.customerDao.listThisCustomer(id, pw);
 		CompanyDTO company = this.companyDao.listThisCompany(id, pw);
 		String url = "";
-		
+
 		if (customer != null && company == null) { // only customer
 			url = "customerprofile";
 			model.addAttribute("customer", customer);
 			Constant.eSession = ESession.eCustomer;
-		}else if (customer == null && company != null){ // only company
+		} else if (customer == null && company != null) { // only company
 			model.addAttribute("company", company);
 			url = "companyprofile";
 			Constant.eSession = ESession.eCompany;
-		}else if (customer != null && company != null) { // company == null
+		} else if (customer != null && company != null) { // company == null
 			System.out.println("고객 & 업체 중복 로그인 방지");
 			status.setComplete();
 			url = "/";
-		}else { // customer == null && company == null
+		} else { // customer == null && company == null
 			url = "login";
 		}
-		
+
 		return "redirect:" + url; // loginDo.jsp
 	}
 
@@ -101,7 +102,7 @@ public class MemberController {
 		// insertTheCustomer
 		return "signup"; // signup.jsp // views
 	}
-	
+
 	@RequestMapping("/signupDo")
 	public String signupDo(String flag) {
 		// 기업인지 개인인지 구분
@@ -118,19 +119,35 @@ public class MemberController {
 		}
 		return url;
 	}
-	
+
 	@RequestMapping("/customer_signupDo")
 	public String customer_signupDo(@RequestParam HashMap<String, Object> cmap) {
 		int res = this.customerDao.insertTheCustomer(cmap);
 		System.out.println("customer insert result => " + res);
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping("/company_signupDo")
 	public String company_signupDo(@RequestParam HashMap<String, Object> cmap) {
 		int res = this.companyDao.insertTheCompany(cmap);
 		System.out.println("company insert result => " + res);
 		return "redirect:/";
+	}
+
+	@RequestMapping("/customer_modify")
+	public ModelAndView customer_modify(ModelAndView mv, HttpSession session) {
+		CustomerDTO customer = (CustomerDTO) session.getAttribute("customer");
+		// 해댱 ID와 비밀번호를 가진 고객을 가져온다.
+		customer = this.customerDao.listThisCustomer(customer.getCustomer_Id(), customer.getCustomer_Password());
+		mv.addObject("customer", customer);
+		mv.setViewName("customer_modify");
+		return mv;
+	}
+
+	@RequestMapping("/customer_modify_ok")
+	public String customer_modify(@RequestParam HashMap<String, Object> cmap) {
+		this.customerDao.updateCustomerInfo(cmap);
+		return "customer_modify_ok";
 	}
 
 }
