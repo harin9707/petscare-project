@@ -15,11 +15,20 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link
+	href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap&subset=korean"
+	rel="stylesheet">
+
 <!-- css -->
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css' />" />
 
 <title>반려동물 예약</title>
 
+<style type="text/css">
+* {
+	font-family: 'Poor Story', cursive;
+}
+</style>
 
 
 </head>
