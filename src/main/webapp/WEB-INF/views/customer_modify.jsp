@@ -14,7 +14,7 @@
 		<div class="col-10 mx-auto main-block" style="text-align: left;">
 			<table class="login-table" height="90">
 				<tr>
-					<td><label class="login-title">개인 회원가입</label></td>
+					<td><label class="login-title">개인 정보 수정</label></td>
 				</tr>
 			</table>
 

@@ -29,11 +29,7 @@
 				<label class="font-weight-bold" for="review_Content">내용 : </label>
 			</div>
 			<div class="review-div-image">
-				<c:choose> 
-    			<c:when test="${not empty review.review_Image}">
-				<img  src="./images/logo.png" id="review_Image" name="review_Image">
-    		</c:when>
-    		</c:choose>
+				<img src="./images/logo.png" id="review_Image" name="review_Image">
 			</div>
 			<div class="review-div">
 				<p id="review_Content" name="review_Content">

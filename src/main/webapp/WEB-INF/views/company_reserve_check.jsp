@@ -13,7 +13,7 @@
 			<div class="mx-auto main-block   col-12">
 				<section>
 					<h2 class="reserve-check-title">예약조회</h2>
- <div class="table-responsive">
+
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -32,7 +32,7 @@
 							</tr>
 						</thead>
 						<c:forEach items="${ reservation }" var="reservation">
- 					
+
 							<form method="get" action="company_reservation_cancel">
 								<tr>
 									<td><input type="text"
@@ -45,8 +45,7 @@
 									<td><c:choose>
 								<c:when test="${reservation.pet_IsNeutralized eq 'false'}">x</c:when>
 								<c:when test="${reservation.pet_IsNeutralized eq 'true'}">o</c:when>
-								</c:choose>
-								</td>
+								</c:choose></td>
 									<td>${ reservation.pet_Gender }</td>
 									<td>${ reservation.pet_Weight }</td>
 									<td>${ reservation.pet_Type }</td>
@@ -62,7 +61,7 @@
 							</form>
 						</c:forEach>
 					</table>
-</div>
+
 				</section>
 
 

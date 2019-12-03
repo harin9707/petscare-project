@@ -15,7 +15,7 @@
 		<div class="mx-auto main-block   col-12">
 			<section>
 				<h2 class="beauty-company-title">호텔업체목록</h2>
-
+				<div class="table-responsive">
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -35,7 +35,7 @@
 						</tr>
 					</c:forEach>
 				</table>
-
+</div>
 			</section>
 
 

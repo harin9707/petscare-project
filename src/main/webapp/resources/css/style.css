@@ -121,37 +121,28 @@
 
 /* login page */
 .logindiv{
-    margin: auto;
-   padding : 10px;
- }
-
-.login-title {
-    padding : 30px;
-    color: #a0855b;
-
+	margin:auto;
+	padding:10px;
 }
-
+.login-title{
+	padding:30px;
+	color:#a0855b;
+}
 .logindiv #userid{
-    border:solid 2px #fdeaab;
-    border-radius: 20px;
-
- 
- }
- .logindiv #password{
-    border:solid 2px #fdeaab;
-    border-radius: 20px;
- 
- }
-
-.logindiv #btn-login{
-    background-color:#fdeaab;
-    color:white;
-    border:solid 1px #fdeaab;
-    font-size:16px;
-    border-radius: 20px;
-
+	border:solid 2px #fdeaab;
+	border-radius:20px;
 }
-
+.logindiv #password{
+	border:solid 2px #fdeaab;
+	border-radius:20px;
+}
+.logindiv #btn-login{
+	background-color:#fdeaab;
+	border-radius:20px;
+	border:solid 2px #fdeaab;
+	color:white;
+	font-size:16px;
+}
 
 
 
@@ -188,9 +179,11 @@ pet_register */
  .gender-radio-group{
     text-align: left;
  }
-.isNeutralized-radio-group{
+ 
+ .isNeutralized-radio-group{
     text-align: left;
  }
+
  /* user-re */
 .user-re-title{
     color:#52432b;

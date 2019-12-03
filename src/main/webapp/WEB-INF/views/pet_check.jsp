@@ -14,7 +14,7 @@
 		<div class="mx-auto main-block   col-12">
 			<section>
 				<h2 class="pet-check-title">펫 등록 조회</h2>
-	
+
 				<table class="table table-hover">
 					<thead>
 						<tr>

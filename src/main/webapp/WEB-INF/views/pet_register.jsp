@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 <head>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -44,16 +44,12 @@
 							name="pet_Age" required>
 					</div>
 				</div>
-				<div class="IsNeutralized-radio-group form-group row">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="pet_IsNeutralized">중성화수술</label>
-					<div class="col-sm-8" id="pet_IsNeutralized">
+					<div class="isNeutralized-radio-group col-sm-8" id="pet_IsNeutralized">
 						<input type="radio" name="pet_IsNeutralized" value="1"
-							 required> 
-							 	<i class="far fa-circle"></i>
-							 
-							 <input type="radio"
-							name="pet_IsNeutralized" value="0" required> 
-							<i class="far fa-times-circle"></i>
+							required> <i class="far fa-circle"></i> <input type="radio"
+							name="pet_IsNeutralized" value="0" required> <i class="far fa-times-circle"></i>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -67,12 +63,12 @@
 					<label class="col-sm-2 col-form-label" for="pet_History">기타사항</label>
 					<div class="col-sm-8">
 						<input class="form-control" type="text" id="pet_History"
-							name="pet_History">
+							name="pet_History" >
 					</div>
 				</div>
-				<div class="register-btn-div row">
+				
 					<button type="submit" class="register-btn">등록하기</button>
-				</div>
+	
 			</form>
 		</div>
 	</div>

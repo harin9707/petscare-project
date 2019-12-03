@@ -13,7 +13,7 @@
 		<div class="mx-auto main-block   col-12">
 			<section>
 				<h2 class="reserve-check-title">예약조회</h2>
-	<div class="table-responsive">
+
 				<table class="table text-center">
 					<thead>
 						<tr>
@@ -41,11 +41,7 @@
 								<td>${ reservation.company_Type }</td>
 								<td>${ reservation.pet_Name }</td>
 								<td>${ reservation.pet_Age }</td>
-								<td><c:choose>
-								<c:when test="${reservation.pet_IsNeutralized eq 'false'}">x</c:when>
-								<c:when test="${reservation.pet_IsNeutralized eq 'true'}">o</c:when>
-								</c:choose>
-								</td>
+								<td>${ reservation.pet_IsNeutralized }</td>
 								<td>${ reservation.pet_Gender }</td>
 								<td>${ reservation.pet_Weight }</td>
 								<td>${ reservation.pet_Type }</td>
@@ -68,7 +64,6 @@
 
 					</c:forEach>
 				</table>
-				</div>
 
 			</section>
 

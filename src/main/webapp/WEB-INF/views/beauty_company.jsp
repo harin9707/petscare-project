@@ -13,7 +13,8 @@
 		<div class="mx-auto main-block   col-12">
 			<section>
 				<h2 class="beauty-company-title">미용업체목록</h2>
- 		<div class="table-responsive">
+				<div class="table-responsive">
+
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -21,7 +22,6 @@
 							<th>대표자명</th>
 							<th>전화번호</th>
 							<th>주소</th>
-							
 						</tr>
 					</thead>
 					<c:forEach items="${ companyList }" var="company">
