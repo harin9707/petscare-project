@@ -29,7 +29,9 @@
 				<label class="font-weight-bold" for="review_Content">내용 : </label>
 			</div>
 			<div class="review-div-image">
+				<c:if test="${not empty review_Image}">
 				<img src="./images/logo.png" id="review_Image" name="review_Image">
+				</c:if>
 			</div>
 			<div class="review-div">
 				<p id="review_Content" name="review_Content">
@@ -41,7 +43,7 @@
 					id="review_Rating" name="review_Rating">${ review.review_Rating }</label>
 				<hr>
 			</div>
-			<div class="review-right-div">
+			<div class="review-div">
 				<label class="font-weight-bold" for="customer_Name">댓글 : </label> <label
 					id="review_Comment" name="review_Comment"> ${ review.review_Comment }</label>
 			</div>
@@ -58,10 +60,10 @@
 					-->
 
 
-			<div class="row">
+			
 				<button onclick="location.href='review_list'"
 					class="btn btn-secondary btn-lg mx-auto">목록</button>
-			</div>
+			
 		</div>
 
 	</div>

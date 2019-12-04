@@ -244,3 +244,29 @@ pet_register */
      background-color: #ffffff;
 }
 
+
+
+.review-right-div{
+    padding: 20px;
+    width: 50%;
+    text-align: left;
+    float: right;
+}
+.review-left-div{
+    padding: 20px;
+    width: 50%;
+    text-align: left;
+    float: left;
+}
+
+.review-div{
+    padding: 20px;
+    text-align: left;
+    float: left;
+    width: 100%;
+}
+
+.review-div-img{
+    text-align: center;
+}
+
