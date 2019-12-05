@@ -15,13 +15,13 @@ public class ReservationDueScheduler {
 	@Autowired
 	private ReservationDAO reservationDAO;
 	
-	@Scheduled(cron = "0 34 2 * * *") // 2시 34분
+	@Scheduled(cron = "0 0 1 * * *")// 초 분 시 * * *
 	public void reservationExpire() {
 		// list only expired reservations
 		List<ReservationDTO> expiredReservations = this.reservationDAO.listOnlyExpiredReservations();
 		// cancel only expired ones
 		for(ReservationDTO expiredReservation : expiredReservations) {
-			this.reservationDAO.cancelTheReservation(expiredReservation.getReservation_Index());
+			this.reservationDAO.finishTheReservation(expiredReservation.getReservation_Index());
 		}
 	} // 새벽 1시 0분 0초
 	

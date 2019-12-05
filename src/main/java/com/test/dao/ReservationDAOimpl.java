@@ -78,7 +78,11 @@ public class ReservationDAOimpl implements ReservationDAO {
 	public int cancelTheReservation(int reservation_Index) {
 		return this.sqlSession.update("cancelTheReservation", reservation_Index);
 	}
-
+	
+	@Override
+	public int finishTheReservation(int reservation_Index) {
+		return this.sqlSession.update("finishTheReservation", reservation_Index);
+	}
 
 	@Override
 	public int selectCompanyIndex(int reservation_Index) {

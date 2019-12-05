@@ -23,4 +23,6 @@ public interface ReservationDAO {
 
 	abstract public int cancelTheReservation(int reservation_Index);
 
+	abstract public int finishTheReservation(int reservation_Index);
+
 }

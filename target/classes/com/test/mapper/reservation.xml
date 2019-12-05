@@ -91,6 +91,11 @@
 		reservation_Check = 'canceled' where reservation_Index =
 		#{reservation_Index}
 	</update>
+	<update id="finishTheReservation">
+		update Reservation set
+		reservation_Check = 'finished' where reservation_Index =
+		#{reservation_Index}
+	</update>
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 
 </mapper>
