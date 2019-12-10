@@ -112,7 +112,14 @@
     display:block;
 }
 
-
+#beauty,#hospital,#hotel{
+    overflow-y:auto;
+    height:300px;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+    padding:5px;
+    text-align: center;
+}
 
 /*
 
@@ -270,3 +277,16 @@ pet_register */
     text-align: center;
 }
 
+#border-table{
+   border:solid 1px #52432b; 
+   margin-top:2%;
+              
+}
+
+.link-table{
+   margin-top:1%;
+}
+
+.link-table a{
+    color:#52432b;
+}

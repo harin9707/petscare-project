@@ -31,41 +31,41 @@
 					<div class="form-group">
 						<label for="Customer_Id">아이디</label> <input type="text"
 							class="form-control" id="Customer_Id" placeholder="아이디"
-							name="customer_Id" />
+							name="customer_Id" required />
 					</div>
 					<div class="form-group">
 						<label for="Customer_Password">비밀번호</label> <input type="password"
 							class="form-control" id="Customer_Password" placeholder="비밀번호"
-							name="customer_Password" />
+							name="customer_Password"  required/>
 					</div>
 					<div class="form-group">
 						<label for="Customer_Name">이름</label> <input type="text"
 							class="form-control" id="Customer_Name" placeholder="이름"
-							name="customer_Name" />
+							name="customer_Name" required />
 					</div>
 
 					<div class="form-group">
 						<label for="Customer_ResidentNumber">주민번호</label> <input
 							type="text" class="form-control" id="Customer_ResidentNumber"
-							placeholder="고객 주민등록번호" name="customer_ResidentNumber" />
+							placeholder="고객 주민등록번호" name="customer_ResidentNumber"  required/>
 					</div>
 
 					<div class="form-group">
 						<label for="Customer_Email">이메일</label> <input type="text"
 							class="form-control" id="Customer_Email" placeholder="이메일"
-							name="customer_Email" />
+							name="customer_Email" required/>
 					</div>
 
 					<div class="form-group">
 						<label for="Customer_PhoneNumber">전화번호</label> <input type="text"
 							class="form-control" id="Customer_PhoneNumber" placeholder="전화번호"
-							name="customer_PhoneNumber" />
+							name="customer_PhoneNumber" required/>
 					</div>
 
 					<div class="form-group">
 						<label for="Customer_Address">주소</label> <input type="text"
 							class="form-control" id="Customer_Address" placeholder="주소"
-							name="customer_Address" />
+							name="customer_Address" required/>
 					</div>
 
 					<button type="submit" class="btn btn-primary">회원가입</button>

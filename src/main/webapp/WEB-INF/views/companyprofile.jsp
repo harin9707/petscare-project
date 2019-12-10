@@ -40,96 +40,72 @@
 
 <body>
 	<jsp:include page="Header.jsp" flush="false" />
-	<main class="container-fluid">
-	<div class="row mx-auto main-container">
-		<div class="mx-auto main-block   col-12">
+	
+<main class="container-fluid">
+        <div class="row mx-auto main-container">
+            <div class="col-10 mx-auto main-block">
+                <table class="title-table ml-auto mr-auto" height="90">
+                    <tr>
+                       <div class="card mb-3 mt-5 ml-auto mr-auto p-2" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img  src="<c:url value='/resources/images/profile.png' />" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">환영합니다! ${company.company_Name }님</h5>
+        <p class="card-text">
+            <p>이메일: ${company.company_Email }</p>
+            <p>주소: ${company.company_Address }</p>
+            <p>전화번호:${company.company_UserPhoneNumber } </p>
+        </p>
+        <p class="card-text"><small class="text-muted">회원가입 날짜 2019.11.12</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+                        <td><label>기업 고객 마이페이지</label></td>
+                    </tr>
+                </table>
+               
+<span class="mb-3">최근 예약 정보</span>
+               <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">예약 번호</th>
+      <th scope="col">예약 고객</th>
+      <th scope="col">반려 동물 이름</th>
+      <th scope="col">예약 날짜</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>2019.10.01</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>2019.10.02</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>2019.10.11</td>
+    </tr>
+  </tbody>
+</table>
+   	<input type="button" class="mypage-btn-group" value="로그아웃"onclick="logout();">
+            <input type="button" class="mypage-btn-group" value="회원탈퇴"onclick="deleteTheCustomer();">
+        </div>
+        </div>
+    </main>
+	
 
-
-
-			<table class="mypage-table mt-5" align="center" height="40"
-				width="430" border="0">
-				<tr>
-					<td><img id="Customer_Image"
-						src="<c:url value='/resources/images/logo.png' />" width="150"
-						height="150"></td>
-				</tr>
-			</table>
-			<table class="mypage-table" align="center" height="40" width="430"
-				border="0">
-				<tr>
-					<td><label class="mypage-user-id" id="company_Name">${ company.company_Name }</td>
-				</tr>
-			</table>
-			<table class="mypage-table" align="center" height="40" width="430"
-				border="0">
-				<tr>
-					<td><input type="button" class="mypage-btn-group"
-						value="정보수정하기" onclick="location.href='company_revise.html'"></td>
-				</tr>
-			</table>
-			<table class="mypage-table" align="center" height="40" width="430"
-				border="0">
-				<tr>
-					<td><input type="button" class="mypage-btn-group"
-						value="예약조회하기" onclick="location.href='company_reserve_check'"></td>
-				</tr>
-			</table>
-
-			<table class="mypage-table" align="center" height="40" width="430"
-				border="0">
-				<tr>
-					<td><input type="button" class="mypage-btn-group"
-						value="후기조회하기" onclick="location.href='company_review_list'"></td>
-				</tr>
-			</table>
-
-			<hr />
-
-			<div class="main">
-
-				<table>
-					<caption></caption>
-					<thead>
-						<tr>
-							<th>회사 사업자 번호</th>
-							<th>회사 아이디</th>
-							<th>회사 비밀번호</th>
-							<th>회사 이름</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>${ company.company_Index }</td>
-							<td>${ company.company_Id }</td>
-							<td>${ company.company_Password }</td>
-							<td>${ company.company_UserName }</td>
-						</tr>
-						<!-- session에 저장된 customer -->
-					</tbody>
-					<tfoot></tfoot>
-				</table>
-
-				<hr />
-
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="로그아웃" onclick="logout();"></td>
-					</tr>
-				</table>
-				<table class="mypage-table" align="center" height="40" width="430"
-					border="0">
-					<tr>
-						<td><input type="button" class="mypage-btn-group"
-							value="회원탈퇴" onclick="deleteTheCustomer();"></td>
-					</tr>
-				</table>
-
-			</div>
-		</div>
-	</div>
-	</main>
 	<jsp:include page="Footer.jsp" flush="false" />
 </body>
 

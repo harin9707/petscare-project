@@ -41,8 +41,8 @@
 			<div class="review-div">
 				<label class="font-weight-bold" for="review_Rating">별점 : </label> <label
 					id="review_Rating" name="review_Rating">${ review.review_Rating }</label>
-				<hr>
 			</div>
+			<hr>
 			<div class="review-div">
 				<label class="font-weight-bold" for="customer_Name">댓글 : </label> <label
 					id="review_Comment" name="review_Comment"> ${ review.review_Comment }</label>

@@ -108,7 +108,7 @@
 													<td>${ reservation.reservation_Time }</td>
 													<td>
 														<button class="btn"
-															onclick="location.href='customer_reservation_cancel?index='+${ reservation.reservation_Index }">
+															onclick="location.href='customer_review_add?index='+${ reservation.reservation_Index }">
 															<i class="fas fa-trash"></i>
 														</button>
 													</td>
