@@ -20,7 +20,7 @@ public class CompanyDAOimpl implements CompanyDAO {
 	
 	@Override
 	public List<CompanyDTO> listAllCompany() {
-		return this.sqlSession.selectList("listAllCompany");
+		return this.sqlSession.selectList("listAllCompany");	
 	}
 	
 	@Override

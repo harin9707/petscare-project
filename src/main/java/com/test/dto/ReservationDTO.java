@@ -13,6 +13,7 @@ public class ReservationDTO {
 	 */
 	//customer
 	private int customer_Index;
+	private String customer_Name;
 	//pet
 	private int pet_Index;
 	private String pet_Name;
@@ -187,7 +188,6 @@ public class ReservationDTO {
 		this.reservation_Time = reservation_Time;
 	}
 	
-	
 	public String getReservation_DetailService() {
 		return reservation_DetailService;
 	}
@@ -200,6 +200,13 @@ public class ReservationDTO {
 	public void setReservation_Check(String reservation_Check) {
 		this.reservation_Check = reservation_Check;
 	}
+	public String getCustomer_Name() {
+		return customer_Name;
+	}
+	public void setCustomer_Name(String customer_Name) {
+		this.customer_Name = customer_Name;
+	}
+	
 	
 	
 }

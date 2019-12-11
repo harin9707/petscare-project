@@ -10,11 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.test.dao.CompanyDAO;
+import com.test.dao.CustomerDAO;
+import com.test.dao.ReservationDAO;
 import com.test.dto.CompanyDTO;
 import com.test.dto.CustomerDTO;
 import com.test.dto.PetDTO;
+import com.test.dto.ReservationDTO;
 
 @Controller
 @SessionAttributes({ "customer", "company" })
@@ -22,13 +26,24 @@ public class CompanyController {
 
 	@Autowired
 	private CompanyDAO companyDao;
+	
+	@Autowired
+	private ReservationDAO reservationDAO;
+	
+	@Autowired
+	private CustomerDAO customerDAO;
 
 	@RequestMapping("/companyprofile")
-	public String profile(Model model, HttpSession session) {
+	public ModelAndView profile(Model model, HttpSession session, ModelAndView mv) {
 		if (session.getAttribute("company") != null) {
 			try {
 				CompanyDTO company = (CompanyDTO) session.getAttribute("company"); // Get the Company Session
 				System.out.println("company => " + company.getCompany_Index());
+				
+				List<ReservationDTO> companyReserve = this.reservationDAO.listItsCompReservations(company.getCompany_Index());
+				
+				mv.addObject("reserve", companyReserve);
+				mv.setViewName("companyprofile");
 				// ActiveMQ Receive from its companyIdx Queue
 			} catch (SecurityException e) {
 				// TODO Auto-generated catch block
@@ -44,7 +59,7 @@ public class CompanyController {
 			// false // Exception Handling
 		}
 
-		return "companyprofile"; // companyprofile.jsp // views
+		return mv; // companyprofile.jsp // views
 	}
 	
 	

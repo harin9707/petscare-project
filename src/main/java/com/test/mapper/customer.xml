@@ -14,6 +14,13 @@
 	<!-- userId와 userPw는 실제 컬럼명, 여기선 map 객체인 user에 저장된 key값들인 id와 pw로 값 찾아내 
 		적어준 것일 뿐 user.id, user.pw, 이렇게 하는 건, 객체를 user란 이름의 객체를 넘겨주어, VO 혹은 DTO로 get해주는 
 		방식이었던 것 -->
+		
+	<select id="listCustomerName" parameterType="java.util.Map"
+		resultType="com.test.dto.CustomerDTO">
+		select customer_Name from Customer where customer_Index = #{customer_Index}
+	</select>	
+		
+	
 
 	<insert id="insertTheCustomer" parameterType="java.util.Map">
 		insert into

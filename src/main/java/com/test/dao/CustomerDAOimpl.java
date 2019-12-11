@@ -1,6 +1,7 @@
 package com.test.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,6 +25,11 @@ public class CustomerDAOimpl implements CustomerDAO {
 		customer.put("customer_Password", customer_Password);
 		return this.sqlSession.selectOne("listThisCustomer", customer);
 	}
+	
+	@Override
+	public List<CustomerDTO> listCustomerName(int customer_Index) {	
+		return this.sqlSession.selectList("listCustomerName", customer_Index);
+	}
 
 	@Override
 	public int insertTheCustomer(HashMap<String, Object> cmap) {
@@ -45,4 +51,6 @@ public class CustomerDAOimpl implements CustomerDAO {
 	public int updateCustomerInfo(HashMap<String, Object> cmap) {
 		return this.sqlSession.update("updateCustomerInfo", cmap);		
 	}
+
+
 }

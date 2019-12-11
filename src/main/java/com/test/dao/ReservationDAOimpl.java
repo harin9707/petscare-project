@@ -45,13 +45,6 @@ public class ReservationDAOimpl implements ReservationDAO {
 		}
 		//----------------------------------------------------------
 		
-		System.out.println(rmap.get("pet_Index"));
-		System.out.println(rmap.get("company_Index"));
-		System.out.println(reservation_Date);
-		System.out.println(reservation_Time);
-		System.out.println(rmap.get("reservation_DetailService"));
-		System.out.println(rmap.get("reservation_Check"));
-		
 		rmap.put("pet_Index", rmap.get("pet_Index"));		
 		rmap.put("company_Index", rmap.get("company_Index"));
 		rmap.put("reservation_Date", date.format(reservation_Date));

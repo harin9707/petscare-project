@@ -112,59 +112,46 @@
     display:block;
 }
 
-
+#beauty,#hospital,#hotel{
+    overflow-y:auto;
+    height:300px;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+    padding:5px;
+    text-align: center;
+}
 
 /*
 
 
 여진 */
 
-.login-table{
-    margin-left: auto;
-    margin-right: auto;
-
+/* login page */
+.logindiv{
+	margin:auto;
+	padding:10px;
 }
-.login-title {
-
-    color: #a0855b;
-
+.login-title{
+	padding:30px;
+	color:#a0855b;
 }
-
-
-
-.login-table #userid{
-    border:solid 2px #fdeaab;
-   margin-top:4%;
-   height: 40px;
-   width: 430px;
+.logindiv #userid{
+	border:solid 2px #fdeaab;
+	border-radius:20px;
 }
-
-.login-table #password{
-    border:solid 2px #fdeaab;
-    margin-top:1%;
-   height:40px;
-   width:430px;
+.logindiv #password{
+	border:solid 2px #fdeaab;
+	border-radius:20px;
+}
+.logindiv #btn-login{
+	background-color:#fdeaab;
+	border-radius:20px;
+	border:solid 2px #fdeaab;
+	color:white;
+	font-size:16px;
 }
 
 
-.login-table #btn-login{
-    margin-top:1%;
-   height:50px;
-   width:430px;
-   background-color:#fdeaab;
-   color:white;
-   font-size:16px;
-   border:solid 1px #fdeaab;
-}
-
-
-.link-table{
-   margin-top:1%;
-}
-
-.link-table a{
-    color:#52432b;
-}
 
 
 /*
@@ -197,6 +184,10 @@ pet_register */
  }
 
  .gender-radio-group{
+    text-align: left;
+ }
+ 
+ .isNeutralized-radio-group{
     text-align: left;
  }
 
@@ -260,3 +251,42 @@ pet_register */
      background-color: #ffffff;
 }
 
+
+
+.review-right-div{
+    padding: 20px;
+    width: 50%;
+    text-align: left;
+    float: right;
+}
+.review-left-div{
+    padding: 20px;
+    width: 50%;
+    text-align: left;
+    float: left;
+}
+
+.review-div{
+    padding: 20px;
+    text-align: left;
+    float: left;
+    width: 100%;
+}
+
+.review-div-img{
+    text-align: center;
+}
+
+#border-table{
+   border:solid 1px #52432b; 
+   margin-top:2%;
+              
+}
+
+.link-table{
+   margin-top:1%;
+}
+
+.link-table a{
+    color:#52432b;
+}

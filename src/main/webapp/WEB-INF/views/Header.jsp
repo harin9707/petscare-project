@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -15,20 +15,27 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link
+	href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap&subset=korean"
+	rel="stylesheet">
+
 <!-- css -->
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css' />" />
 
-
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-
-
 <title>반려동물 예약</title>
-</head>
 
+<style type="text/css">
+* {
+	font-family: 'Poor Story', cursive;
+}
+</style>
+
+
+</head>
 <body>
 	<header>
 		<nav class="menu navbar navbar-expand-lg navbar-light" id="top">
-			<a class="navbar-brand" href="index.html"> <img
+			<a class="navbar-brand" href="index.jsp"> <img
 				src="<c:url value='/resources/images/logo.png' />" width="70"
 				height="50" alt="logo">PET
 			</a>
@@ -40,21 +47,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">홈
-							<span class="sr-only">(current)</span>
-					</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="index.html">홈 <span class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">소개</a></li>
-					<li class="nav-item"><a class="nav-link" href="reserve.html">예약하기</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="search.html">업체찾기</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="reserve">예약하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">제휴문의</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Q&A</a></li>
-					<li class="nav-item"><a class="nav-link" href="login.html">Login</a>
+					<li class="nav-item"><a class="nav-link" href="loginOrProfile">Login</a>
 					</li>
-
 				</ul>
 
 				<form class="menu_form form-inline my-2 my-lg-0">
@@ -68,68 +69,6 @@
 			</div>
 		</nav>
 	</header>
-	<main class="container-fluid">
-		<div class="row mx-auto main-container">
-			<div class="mx-auto main-block   col-12">
-				<section>
-					<h2 class="reserve-check-title">예약조회</h2>
-
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>예약번호</th>
-								<th>서비스 종류</th>
-								<th>이름</th>
-								<th>나이</th>
-								<th>중성화수술여부</th>
-								<th>성별</th>
-								<th>무게</th>
-								<th>종</th>
-								<th>예약날짜</th>
-								<th>시간</th>
-							</tr>
-						</thead>
-						<c:forEach items="${ reservation }" var="reservation">
-							<tr>
-								<td>${ reservation.reservation_Index }</td>
-								<td>${ reservation.company_Type }</td>
-								<td>${ reservation.pet_Name }</td>
-								<td>${ reservation.pet_Age }</td>
-								<td>${ reservation.pet_IsNeutralized }</td>
-								<td>${ reservation.pet_Gender }</td>
-								<td>${ reservation.pet_Weight }</td>
-								<td>${ reservation.pet_Type }</td>
-								<td>${ reservation.reservation_Date }</td>
-								<td>${ reservation.reservation_Time }</td>
-							</tr>
-						</c:forEach>
-					</table>
-
-				</section>
-
-
-			</div>
-		</div>
-	</main>
-	<footer class="container-fluid">
-		<div class="row footer-container">
-			<div class="col-12">
-				<p>
-					<a href="#top" class="footer_text ">Back to top</a>
-				</p>
-				<p>
-					<a href="#" class="footer_text ">Language</a> <a href="#"
-						class="footer_text">privacy</a> <a href="#" class="footer_text">Terms</a>
-				</p>
-				<p>© Copyright 2019, All Rights Reserved</p>
-			</div>
-			<div class="col-12 footer_sns">
-				<a href="#"><i class="footer_sns_i fab fa-twitter"></i></a> <a
-					href="#"><i class="footer_sns_i fab fa-instagram"></i></a> <a
-					href="#"><i class="footer_sns_i fab fa-facebook-square"></i></a>
-			</div>
-		</div>
-	</footer>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -146,5 +85,4 @@
 		crossorigin="anonymous"></script>
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </body>
-
 </html>
