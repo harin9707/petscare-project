@@ -192,7 +192,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.17</version>
+			<version>8.0.28</version>
 		</dependency>
         <!-- MariaDB Connector Spring, JDBC -->
         <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
